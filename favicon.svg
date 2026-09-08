@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="logistika">
-  <title>logistika</title>
-  <rect width="64" height="64" rx="12" fill="#385DAB"/>
-  <path d="M22 14 v26 a4 4 0 0 0 4 4 h20" fill="none" stroke="#FFFFFF"
-        stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
-  <circle cx="17" cy="47" r="4" fill="#F6B334"/>
-  <circle cx="34" cy="51" r="4" fill="#F6B334"/>
-</svg>
