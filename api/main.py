@@ -97,7 +97,7 @@ SUPPORTED_LOCALES = {"en", "es"}
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 log = logging.getLogger("logistika")
 
-app = FastAPI(title="logistika", docs_url=None, redoc_url=None, openapi_url=None)
+app = FastAPI(title="logistika", docs_url=None, redoc_url=None, openapi_url=None, redirect_slashes=True)
 
 # Con sitio y API en el mismo origen, CORS no hace falta. Se deja configurado por
 # si algún día se separan, pero cerrado a un solo origen. Nunca ["*"].
