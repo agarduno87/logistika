@@ -1,14 +1,10 @@
 {
-  "$schema": "https://vercel.app",
+  "$schema": "https://vercel.sh",
   "outputDirectory": "docs",
   "trailingSlash": false,
   "rewrites": [
     {
-      "source": "/api/(.*)",
-      "destination": "/api/main.py"
-    },
-    {
-      "source": "/(.*)",
+      "source": "/api/:path*",
       "destination": "/api/main.py"
     }
   ],
