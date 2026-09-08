@@ -1,0 +1,510 @@
+<!doctype html>
+<!--
+  LOGÍSTIKA — PROPUESTA 3 · "TRES NIVELES"
+
+  Tercera tesis: ni la función (propuesta 1) ni el diagnóstico (propuesta 2),
+  sino la ESCALERA COMERCIAL. START → MANAGE → PARTNER. El visitante se
+  autoclasifica por su tamaño y su momento, y ve exactamente qué compra en
+  cada nivel, con alcance cerrado.
+
+  Es la más fácil de vender sin llamada previa y la que mejor califica: el que
+  llega buscando una cotización de flete se da cuenta solo de que no es el
+  cliente, y el que necesita estructura entiende de inmediato dónde encaja.
+
+  Diseño: comercial, tipografía grande, alto contraste, azul contenedor y
+  amarillo señalización. Deliberadamente distinto a las otras dos.
+-->
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Foreign Trade &amp; Logistics by Level: Start, Manage or Outsource | Logistika</title>
+<meta name="description" content="Three service levels for companies that import: START to begin importing, MANAGE for operations already running, and PARTNER as your external foreign trade department. Querétaro and the Bajío, México.">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#00437A">
+<!--
+  NOTE ON CSP: this file is self-contained for review, so there is deliberately
+  NO Content-Security-Policy meta tag. A meta CSP with style-src 'self' blocks
+  the inline <style> block and the page renders with no design whatsoever —
+  which is exactly what went wrong in the first version of these files.
+  In the real project, CSS and JS live in their own files and the CSP is served
+  as an HTTP header, the same way the Technical Transformation Studio build does it.
+-->
+<link rel="canonical" href="https://www.logistika.mx/">
+
+<style>
+:root{
+  --blue:#00437A; --blue-dk:#00325C; --blue-lt:#E7EFF6;
+  --yellow:#FFC531; --yellow-dk:#8A6300;
+  --ink:#101820; --muted:#556575; --line:#D3DDE6; --paper:#FFFFFF; --wash:#F4F7FA;
+  --max:1160px;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --mono:ui-monospace,"SFMono-Regular",Menlo,Consolas,"Liberation Mono",monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+.skip{position:absolute;left:-9999px}
+.skip:focus{left:12px;top:12px;background:var(--blue);color:#fff;padding:10px 14px;z-index:99}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+h1,h2,h3{margin:0;letter-spacing:-.03em;line-height:1.05;font-weight:800}
+
+header{position:sticky;top:0;z-index:20;background:var(--paper);border-bottom:3px solid var(--ink)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:76px;gap:20px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:800;font-size:22px;letter-spacing:-.03em}
+.brand i{width:14px;height:26px;background:var(--yellow);border:2px solid var(--ink);font-style:normal}
+nav{display:flex;align-items:center;gap:22px;font-size:14.5px;font-weight:600}
+nav a{text-decoration:none;color:var(--muted)}
+nav a:hover{color:var(--blue)}
+.cta{background:var(--yellow);color:var(--ink)!important;padding:12px 18px;border:2px solid var(--ink);box-shadow:3px 3px 0 var(--ink)}
+.cta:hover{background:#FFD361}
+.burger{display:none;background:var(--paper);border:2px solid var(--ink);width:44px;height:40px;font-size:18px;cursor:pointer}
+
+.hero{background:var(--blue);color:#fff;padding:80px 0}
+.hero h1{font-size:clamp(38px,6vw,72px);max-width:17ch;margin-bottom:24px}
+.hero h1 span{color:var(--yellow)}
+.kick{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--yellow);margin:0 0 20px}
+.kick-b{color:var(--blue)}
+.hero .lead{font-size:19px;color:#C3D9EC;max-width:58ch;margin:0 0 34px}
+.btns{display:flex;gap:14px;flex-wrap:wrap}
+.btn{display:inline-block;text-decoration:none;padding:16px 26px;font-weight:800;font-size:15px;border:2px solid var(--ink)}
+.btn-y{background:var(--yellow);color:var(--ink);box-shadow:4px 4px 0 var(--ink)}
+.btn-y:hover{background:#FFD361}
+.btn-w{background:transparent;color:#fff;border-color:#fff}
+.btn-w:hover{background:#fff;color:var(--blue)}
+.trust{display:flex;flex-wrap:wrap;gap:0;margin-top:40px;border-top:1px solid #23608F;padding-top:22px}
+.trust div{padding-right:28px;margin-right:28px;border-right:1px solid #23608F}
+.trust div:last-child{border-right:0;margin-right:0;padding-right:0}
+.trust b{display:block;font-size:26px;color:var(--yellow);letter-spacing:-.02em}
+.trust span{font-size:13px;color:#9FBFD8}
+
+section{padding:80px 0}
+.head{max-width:62ch;margin-bottom:50px}
+h2.t{font-size:clamp(30px,4.2vw,52px);margin-bottom:16px}
+.head p{color:var(--muted);margin:0;font-size:17px}
+
+/* niveles */
+.levels{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:start}
+.lvl{border:3px solid var(--ink);background:var(--paper);display:flex;flex-direction:column;height:100%}
+.lvl.mid{box-shadow:8px 8px 0 var(--yellow)}
+.lvlhead{background:var(--ink);color:#fff;padding:22px 24px}
+.lvl.mid .lvlhead{background:var(--blue)}
+.lvlhead b{display:block;font-size:30px;letter-spacing:-.03em;font-weight:800}
+.lvlhead span{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--yellow)}
+.lvlbody{padding:26px 24px;flex:1;display:flex;flex-direction:column}
+.forwho{background:var(--wash);border-left:4px solid var(--yellow);padding:14px 16px;margin:0 0 22px;font-size:14.5px;color:var(--muted)}
+.forwho b{color:var(--ink)}
+.lvl h3{font-size:19px;margin-bottom:14px;letter-spacing:-.02em}
+.lvl ul{margin:0 0 22px;padding:0;list-style:none;font-size:14.5px}
+.lvl li{padding:7px 0 7px 24px;position:relative;color:var(--muted);border-bottom:1px solid var(--line)}
+.lvl li:last-child{border-bottom:0}
+.lvl li::before{content:"✓";position:absolute;left:0;color:var(--blue);font-weight:800}
+.lvlfoot{margin-top:auto;border-top:3px solid var(--ink);padding-top:18px}
+.lvlfoot .model{font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;color:var(--muted);margin:0 0 14px}
+.lvlbtn{display:block;text-align:center;text-decoration:none;background:var(--yellow);color:var(--ink);border:2px solid var(--ink);padding:13px;font-weight:800;font-size:14.5px}
+.lvlbtn:hover{background:#FFD361}
+
+/* problema */
+.wash{background:var(--wash);border-top:3px solid var(--ink);border-bottom:3px solid var(--ink)}
+.pains{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.pain{background:var(--paper);border:2px solid var(--ink);padding:26px}
+.pain b{display:block;font-size:38px;color:var(--blue);letter-spacing:-.03em;margin-bottom:12px}
+.pain h3{font-size:18px;margin-bottom:10px}
+.pain p{margin:0;font-size:14.5px;color:var(--muted)}
+
+/* catálogo */
+.cats{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border:3px solid var(--ink)}
+.cat{padding:30px;border-right:3px solid var(--ink);border-bottom:3px solid var(--ink)}
+.cat:nth-child(2n){border-right:0}
+.cat:nth-last-child(-n+2){border-bottom:0}
+.cat b{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--blue)}
+.cat h3{font-size:21px;margin:12px 0 12px}
+.cat ul{margin:0;padding:0;list-style:none;font-size:14.5px;columns:2;column-gap:26px}
+.cat li{padding:4px 0;color:var(--muted);break-inside:avoid}
+
+/* método */
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:0;border:3px solid var(--ink)}
+.stp{padding:26px 20px;border-right:3px solid var(--ink)}
+.stp:last-child{border-right:0}
+.stp b{font-family:var(--mono);font-size:12px;color:var(--blue);letter-spacing:.12em}
+.stp h3{font-size:19px;margin:12px 0 8px}
+.stp p{margin:0;font-size:14px;color:var(--muted)}
+
+/* faq */
+.faq{max-width:80ch}
+.faq details{border-bottom:2px solid var(--line)}
+.faq summary{cursor:pointer;padding:20px 0;font-weight:700;font-size:17px;list-style:none;display:flex;justify-content:space-between;gap:18px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";color:var(--blue);font-size:24px;line-height:1;font-weight:800}
+.faq details[open] summary::after{content:"−"}
+.faq p{margin:0 0 22px;color:var(--muted);max-width:72ch;font-size:15.5px}
+
+/* contacto */
+.contact{background:var(--blue);color:#fff;border-top:3px solid var(--ink)}
+.contact h2.t{color:#fff}
+.contact .head p{color:#C3D9EC}
+.contact .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px}
+form{display:grid;gap:16px}
+label{display:block}
+label>span{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#9FBFD8}
+input,select,textarea{display:block;width:100%;margin-top:8px;background:#00325C;border:2px solid #23608F;color:#fff;padding:14px;font:inherit;font-size:15px}
+input:focus,select:focus,textarea:focus{outline:3px solid var(--yellow)}
+button{background:var(--yellow);color:var(--ink);border:2px solid var(--ink);padding:16px;font:inherit;font-weight:800;font-size:15.5px;cursor:pointer;box-shadow:4px 4px 0 #001E38}
+button:hover{background:#FFD361}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.status{font-family:var(--mono);font-size:12.5px;min-height:20px;color:var(--yellow);margin:0}
+.note{font-size:12.5px;color:#9FBFD8;margin:0}
+footer{background:var(--ink);color:#8A9AA8;padding:26px 0;font-size:13px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+@media(max-width:1000px){
+  .burger{display:block}
+  nav{display:none;position:absolute;top:76px;left:0;right:0;flex-direction:column;align-items:flex-start;background:var(--paper);border-bottom:3px solid var(--ink);padding:16px 24px;gap:14px}
+  nav.open{display:flex}
+  .levels,.pains{grid-template-columns:1fr}
+  .lvl.mid{box-shadow:none}
+  .steps{grid-template-columns:1fr 1fr}
+  .stp{border-right:0;border-bottom:3px solid var(--ink)}
+  .contact .wrap{grid-template-columns:1fr;gap:40px}
+}
+@media(max-width:620px){
+  .cats{grid-template-columns:1fr}
+  .cat{border-right:0}
+  .cat ul{columns:1}
+  .steps{grid-template-columns:1fr}
+  .trust div{border-right:0;padding-right:0;margin-right:0;width:50%;margin-bottom:14px}
+  section{padding:56px 0}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header>
+  <div class="wrap">
+    <a class="brand" href="#top"><i></i><span>logistika</span></a>
+    <button class="burger" id="burger" aria-expanded="false" aria-controls="nav" aria-label="Open menu">☰</button>
+    <nav id="nav">
+      <a href="#levels">Levels</a>
+      <a href="#problem">What we solve</a>
+      <a href="#catalog">Catalog</a>
+      <a href="#faq">Questions</a>
+      <a class="cta" href="#contact">Talk to us</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<section class="hero" id="top">
+  <div class="wrap">
+    <p class="kick">Foreign trade · Logistics · Supply chain</p>
+    <h1>Enter at the level you need today. <span>Move up when it makes sense.</span></h1>
+    <p class="lead">Not every company needs the same thing. Some are about to import for the first time, some already import and want to stop chasing it, and some need someone to take the whole function. Pick where you come in.</p>
+    <div class="btns">
+      <a class="btn btn-y" href="#levels">See the three levels</a>
+      <a class="btn btn-w" href="#contact">Talk to logistika</a>
+    </div>
+    <div class="trust">
+      <div><b>15+</b><span>years in foreign trade</span></div>
+      <div><b>3</b><span>continents of suppliers coordinated</span></div>
+      <div><b>Air</b><span>ocean and ground</span></div>
+      <div><b>Bajío</b><span>based in Querétaro</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="levels">
+  <div class="wrap">
+    <div class="head">
+      <p class="kick kick-b">The three levels</p>
+      <h2 class="t">Start, manage or outsource.</h2>
+      <p>Each level has a closed scope and a price agreed in writing before we start. You can stay where you are or move up when volume justifies it.</p>
+    </div>
+    <div class="levels">
+
+      <article class="lvl">
+        <div class="lvlhead"><span>Level 01</span><b>START</b></div>
+        <div class="lvlbody">
+          <p class="forwho"><b>For you if:</b> you want to start importing and do not know whether your product is viable, what it will really cost, or which permits it needs.</p>
+          <h3>Consulting and import plan</h3>
+          <ul>
+            <li>Product and supplier analysis</li>
+            <li>Tariff classification and applicable regulation</li>
+            <li>Standards, permits and importer registry</li>
+            <li>Duties and total landed cost estimate</li>
+            <li>Recommended Incoterm and regime</li>
+            <li>Route and estimated transit times</li>
+            <li>Feasibility file</li>
+          </ul>
+          <div class="lvlfoot">
+            <p class="model">PROJECT · FIXED PRICE</p>
+            <a class="lvlbtn" href="#contact">Get my plan</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="lvl mid">
+        <div class="lvlhead"><span>Level 02 · Most contracted</span><b>MANAGE</b></div>
+        <div class="lvlbody">
+          <p class="forwho"><b>For you if:</b> you already run 5 to 30 shipments a month and your team spends its days chasing documents, emails and carriers.</p>
+          <h3>End-to-end operations management</h3>
+          <ul>
+            <li>Purchase order intake</li>
+            <li>Supplier contact and follow-up</li>
+            <li>Document review before shipping</li>
+            <li>Forwarder and transport coordination</li>
+            <li>ETA monitoring and customs clearance</li>
+            <li>Release and domestic transport</li>
+            <li>Plant delivery and file closure</li>
+            <li>Monthly KPI report</li>
+          </ul>
+          <div class="lvlfoot">
+            <p class="model">MONTHLY RETAINER + FEE PER SHIPMENT</p>
+            <a class="lvlbtn" href="#contact">Quote my operation</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="lvl">
+        <div class="lvlhead"><span>Level 03</span><b>PARTNER</b></div>
+        <div class="lvlbody">
+          <p class="forwho"><b>For you if:</b> you need a foreign trade and supply chain function, but not the headcount, the learning curve or the dependency on a single person.</p>
+          <h3>External department</h3>
+          <ul>
+            <li>Everything in MANAGE</li>
+            <li>Procurement logistics and vendor management</li>
+            <li>Exports as well as imports</li>
+            <li>Compliance, filings and document audit</li>
+            <li>Cost control and departmental budget</li>
+            <li>Indicators and reporting to leadership</li>
+            <li>Continuous optimization and special projects</li>
+            <li>Interface with your internal team</li>
+          </ul>
+          <div class="lvlfoot">
+            <p class="model">MONTHLY RETAINER · ANNUAL AGREEMENT</p>
+            <a class="lvlbtn" href="#contact">Evaluate the model</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section class="wash" id="problem">
+  <div class="wrap">
+    <div class="head">
+      <p class="kick kick-b">What we solve</p>
+      <h2 class="t">Three things that are almost always broken.</h2>
+    </div>
+    <div class="pains">
+      <div class="pain">
+        <b>01</b>
+        <h3>Nobody sees the whole operation</h3>
+        <p>The customs broker, the forwarder, the carrier and the supplier each see their leg. The real cost only surfaces once everything has been paid.</p>
+      </div>
+      <div class="pain">
+        <b>02</b>
+        <h3>Everything depends on one person</h3>
+        <p>The operation lives in the head of whoever runs it. If they resign, fall ill or take leave, the company stops.</p>
+      </div>
+      <div class="pain">
+        <b>03</b>
+        <h3>No numbers to decide with</h3>
+        <p>Without cost per shipment, OTIF and an incident history, every vendor negotiation is done blind.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="catalog">
+  <div class="wrap">
+    <div class="head">
+      <p class="kick kick-b">Operating catalog</p>
+      <h2 class="t">What we know how to do, unadorned.</h2>
+      <p>These functions live inside the three levels. If you need just one, it can also be bought as a project.</p>
+    </div>
+    <div class="cats">
+      <div class="cat">
+        <b>LEADERSHIP</b>
+        <h3>Management</h3>
+        <ul>
+          <li>Interim logistics management</li>
+          <li>Interim supply chain management</li>
+          <li>External logistics department</li>
+          <li>External foreign trade department</li>
+          <li>Project direction</li>
+        </ul>
+      </div>
+      <div class="cat">
+        <b>FOREIGN TRADE</b>
+        <h3>Import / Export</h3>
+        <ul>
+          <li>Import coordination</li>
+          <li>Export coordination</li>
+          <li>Customs coordination</li>
+          <li>Document management and filings</li>
+          <li>Tariff classification</li>
+          <li>International freight coordination</li>
+        </ul>
+      </div>
+      <div class="cat">
+        <b>SUPPLY CHAIN</b>
+        <h3>Supply chain</h3>
+        <ul>
+          <li>Supply chain mapping</li>
+          <li>Supplier management and evaluation</li>
+          <li>Procurement logistics</li>
+          <li>Inventory optimization</li>
+          <li>Distribution planning</li>
+        </ul>
+      </div>
+      <div class="cat">
+        <b>OPTIMIZATION</b>
+        <h3>Cost and process</h3>
+        <ul>
+          <li>Logistics cost analysis</li>
+          <li>Process optimization</li>
+          <li>Route design and optimization</li>
+          <li>Lead-time reduction</li>
+          <li>KPI implementation</li>
+        </ul>
+      </div>
+      <div class="cat">
+        <b>OPERATIONS</b>
+        <h3>Daily control</h3>
+        <ul>
+          <li>Shipment tracking</li>
+          <li>Delivery control</li>
+          <li>Incident management</li>
+          <li>Carrier management</li>
+          <li>Customer and vendor coordination</li>
+        </ul>
+      </div>
+      <div class="cat">
+        <b>PROJECTS</b>
+        <h3>Project logistics</h3>
+        <ul>
+          <li>Industrial project planning</li>
+          <li>Material and structure movement</li>
+          <li>Project procurement</li>
+          <li>Installation logistics</li>
+          <li>Multimodal coordination</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="wash">
+  <div class="wrap">
+    <div class="head">
+      <p class="kick kick-b">How we work</p>
+      <h2 class="t">Five steps, always in this order.</h2>
+    </div>
+    <div class="steps">
+      <div class="stp"><b>01</b><h3>Understand</h3><p>Your real operation, your goals and where it hurts today.</p></div>
+      <div class="stp"><b>02</b><h3>Analyze</h3><p>Risks, cost, times and opportunities, with numbers.</p></div>
+      <div class="stp"><b>03</b><h3>Design</h3><p>Route, regime, vendors and procedures built to fit.</p></div>
+      <div class="stp"><b>04</b><h3>Manage</h3><p>We coordinate the operation and answer when something fails.</p></div>
+      <div class="stp"><b>05</b><h3>Measure</h3><p>KPIs, cost and incidents that support the next decision.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <div class="head">
+      <p class="kick kick-b">Questions</p>
+      <h2 class="t">What we get asked on every first call.</h2>
+    </div>
+    <div class="faq">
+      <details><summary>Are you a customs broker?</summary><p>No, and the distinction matters. In Mexico, customs clearance is performed by a licensed customs broker. logistika coordinates, supervises and audits that broker, and answers for the result of the whole operation — but does not replace their legal function or charge for it.</p></details>
+      <details><summary>Are you a carrier or a forwarder?</summary><p>Also no. We own no trucks, ships or warehouses, and that is an advantage: we can select and compare vendors based on your operation rather than on what we have sitting idle in a yard.</p></details>
+      <details><summary>What size of company do you serve?</summary><p>The model works best for industrial companies of 20 to 300 employees, with international operations and no specialized foreign trade function — or with one saturated person doing all of it.</p></details>
+      <details><summary>How do you charge?</summary><p>It depends on the level: START is a fixed-price project, MANAGE is a monthly retainer plus a fee per shipment, and PARTNER is a monthly retainer on an annual agreement. In all three the scope and the price are agreed in writing before work begins.</p></details>
+      <details><summary>What happens to our current customs broker?</summary><p>They stay, if they perform. Part of the work is evaluating them with data — times, charges, incidents — and telling you honestly whether to keep, renegotiate or compare. Changing vendors is not a goal, it is a possible conclusion.</p></details>
+      <details><summary>Do you work with foreign companies entering Mexico?</summary><p>Yes, and it is one of the most natural fits: a company from Europe, Asia or the United States that will sell or manufacture here needs someone to run the Mexican side of the chain from the first shipment.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div>
+      <p class="kick">Start here</p>
+      <h2 class="t">Tell us which level you are at.</h2>
+      <p class="lead">If you do not know which one is yours, describe your operation and we will tell you. You get a written reply with a first read, whether or not there is an engagement.</p>
+    </div>
+    <form id="form" method="post" action="/api/contact" novalidate>
+      <label><span>Company</span><input name="company" required maxlength="120" placeholder="Your company"></label>
+      <label><span>Work email</span><input type="email" name="email" required maxlength="254" placeholder="you@company.com"></label>
+      <label><span>Level you are interested in</span><select name="level">
+        <option value="START">START — I want to begin importing</option>
+        <option value="MANAGE">MANAGE — I already import and want it managed</option>
+        <option value="PARTNER">PARTNER — I want to outsource the function</option>
+        <option value="Not sure">Not sure — help me place myself</option>
+      </select></label>
+      <label><span>Your operation</span><textarea name="message" rows="5" required maxlength="4000" placeholder="What you import or export, from where, how many shipments a month, and what is not working today"></textarea></label>
+      <div class="hp" aria-hidden="true"><label>Leave this empty<input name="website" tabindex="-1" autocomplete="off"></label></div>
+      <input type="hidden" name="ts" id="ts">
+      <button type="submit">Send</button>
+      <p class="status" id="st" role="status" aria-live="polite"></p>
+      <p class="note">We use your message to reply to you. No lists, no third parties.</p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap"><span>LOGISTIKA · Querétaro, México</span><span id="yr"></span></div></footer>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"ProfessionalService","@id":"https://www.logistika.mx/#logistika","name":"logistika",
+"description":"Foreign trade and logistics services by level: import plan, end-to-end operations management, and external foreign trade department.",
+"url":"https://www.logistika.mx/","areaServed":["Querétaro","Bajío","México"],"availableLanguage":["es","en"],
+"address":{"@type":"PostalAddress","addressLocality":"Santiago de Querétaro","addressRegion":"Querétaro","addressCountry":"MX"}},
+{"@type":"Service","name":"START — Import plan","serviceType":"Foreign trade consulting","provider":{"@id":"https://www.logistika.mx/#logistika"}},
+{"@type":"Service","name":"MANAGE — Operations management","serviceType":"Import management","provider":{"@id":"https://www.logistika.mx/#logistika"}},
+{"@type":"Service","name":"PARTNER — External foreign trade department","serviceType":"Foreign trade outsourcing","provider":{"@id":"https://www.logistika.mx/#logistika"}},
+{"@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Are you a customs broker?","acceptedAnswer":{"@type":"Answer","text":"No. In Mexico customs clearance is performed by a licensed customs broker. logistika coordinates, supervises and audits that broker, but does not replace their legal function."}},
+{"@type":"Question","name":"How do you charge?","acceptedAnswer":{"@type":"Answer","text":"START is a fixed-price project, MANAGE is a monthly retainer plus a fee per shipment, and PARTNER is a monthly retainer on an annual agreement."}},
+{"@type":"Question","name":"What size of company do you serve?","acceptedAnswer":{"@type":"Answer","text":"Industrial companies of 20 to 300 employees with international operations and no specialized foreign trade function."}}]}]}
+</script>
+
+<script>
+(function(){
+  "use strict";
+  var $=function(i){return document.getElementById(i);};
+  if($("yr")) $("yr").textContent=String(new Date().getFullYear());
+
+  var b=$("burger"),n=$("nav");
+  if(b&&n){
+    b.addEventListener("click",function(){
+      var open=n.classList.toggle("open");
+      b.setAttribute("aria-expanded",open?"true":"false");
+      b.setAttribute("aria-label",open?"Close menu":"Open menu");
+    });
+    n.addEventListener("click",function(e){if(e.target.tagName==="A"){n.classList.remove("open");b.setAttribute("aria-expanded","false");}});
+    document.addEventListener("keydown",function(e){if(e.key==="Escape"&&n.classList.contains("open")){n.classList.remove("open");b.setAttribute("aria-expanded","false");b.focus();}});
+  }
+
+  var f=$("form"),st=$("st"),ts=$("ts");
+  if(!f||!st) return;
+  if(ts) ts.value=String(Date.now());
+  f.addEventListener("submit",function(e){
+    e.preventDefault();
+    if(f.website&&f.website.value!==""){st.textContent="Thanks — we will be in touch.";return;}
+    if(ts&&Date.now()-Number(ts.value)<3000){st.textContent="Take a moment to describe your operation, then send.";return;}
+    if(!f.checkValidity()){st.textContent="Check the company, email and description fields.";f.reportValidity();return;}
+    st.textContent="Ready to send. Connect POST /api/contact to enable delivery.";
+  });
+})();
+</script>
+</body>
+</html>

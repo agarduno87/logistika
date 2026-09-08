@@ -1,0 +1,501 @@
+<!doctype html>
+<!--
+  LOGÍSTIKA — PROPUESTA 2 · "EL CORREDOR"
+
+  Tesis distinta a la 1: en vez de vender la función (departamento externo),
+  vende el DIAGNÓSTICO. La página se organiza por los tramos de la ruta y en
+  cada tramo señala dónde se pierde dinero. Producto de entrada: el Supply
+  Chain Health Check, con el departamento externo como destino natural.
+
+  Sirve para el comprador que todavía NO acepta que necesita externalizar,
+  pero sí sospecha que está pagando de más. Es la venta más fácil de abrir.
+
+  Diseño: editorial claro, serif, mucho aire. Deliberadamente lo contrario a
+  la sala de operaciones de la propuesta 1.
+-->
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Foreign Trade &amp; Supply Chain Diagnostic | Logistika Querétaro</title>
+<meta name="description" content="In ten days we identify where your import operation loses money and time: purchasing, suppliers, customs, transport, inventory and last mile. Diagnostic with a 90-day action plan.">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#0B2E3F">
+<!--
+  NOTE ON CSP: this file is self-contained for review, so there is deliberately
+  NO Content-Security-Policy meta tag. A meta CSP with style-src 'self' blocks
+  the inline <style> block and the page renders with no design whatsoever —
+  which is exactly what went wrong in the first version of these files.
+  In the real project, CSS and JS live in their own files and the CSP is served
+  as an HTTP header, the same way the Technical Transformation Studio build does it.
+-->
+<link rel="canonical" href="https://www.logistika.mx/">
+
+<style>
+:root{
+  --paper:#F2F4F5; --card:#FFFFFF; --ink:#0B2E3F; --ink-2:#14455C;
+  --rust:#A8501E; --rust-dk:#8A4118; --rule:#C8D2D7; --muted:#4C6270; --max:1120px;
+  --serif:Georgia,"Iowan Old Style","Palatino Linotype",Palatino,"Times New Roman",serif;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --mono:ui-monospace,"SFMono-Regular",Menlo,Consolas,"Liberation Mono",monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--rust);outline-offset:2px}
+.skip{position:absolute;left:-9999px}
+.skip:focus{left:12px;top:12px;background:var(--ink);color:#fff;padding:10px 14px;z-index:99}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+
+header{position:sticky;top:0;z-index:20;background:rgba(242,244,245,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--rule)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:78px;gap:20px}
+.brand{display:flex;align-items:baseline;gap:10px;text-decoration:none}
+.brand b{font-family:var(--serif);font-weight:400;font-size:26px;letter-spacing:-.02em}
+.brand span{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+nav{display:flex;align-items:center;gap:24px;font-size:14px}
+nav a{text-decoration:none;color:var(--muted);padding-bottom:3px;border-bottom:1px solid transparent}
+nav a:hover{color:var(--ink);border-bottom-color:var(--rust)}
+.cta{background:var(--ink);color:#fff!important;padding:11px 17px;font-size:13.5px;font-weight:600;border-bottom:0!important}
+.cta:hover{background:var(--ink-2)}
+.burger{display:none;background:var(--card);border:1px solid var(--rule);width:42px;height:38px;font-size:18px;cursor:pointer;color:var(--ink)}
+
+.hero{padding:88px 0 68px}
+.hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:64px;align-items:start}
+.kick{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--rust);margin:0 0 20px}
+h1{font-family:var(--serif);font-weight:400;font-size:clamp(36px,5.2vw,60px);line-height:1.05;letter-spacing:-.02em;margin:0 0 22px}
+h1 em{font-style:italic;color:var(--rust)}
+.lead{font-size:18.5px;color:var(--muted);max-width:54ch;margin:0 0 32px}
+.btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-block;text-decoration:none;padding:15px 24px;font-weight:600;font-size:14.5px;border:1.5px solid var(--ink)}
+.btn-fill{background:var(--ink);color:#fff}
+.btn-fill:hover{background:var(--ink-2)}
+.btn-line{color:var(--ink)}
+.btn-line:hover{border-color:var(--rust);color:var(--rust)}
+
+.offercard{border:1.5px solid var(--ink);background:var(--card)}
+.offercard h2{margin:0;background:var(--ink);color:#fff;padding:14px 18px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500}
+.offercard dl{margin:0}
+.orow{display:flex;justify-content:space-between;gap:16px;padding:13px 18px;border-bottom:1px dotted var(--rule);font-size:13.5px}
+.orow:last-child{border-bottom:0}
+.orow dt{margin:0;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.orow dd{margin:0;font-weight:600;text-align:right}
+.ofoot{margin:0;padding:15px 18px;border-top:1.5px solid var(--ink);font-family:var(--mono);font-size:11px;color:var(--rust);letter-spacing:.06em}
+
+section{padding:82px 0;border-top:1px solid var(--rule)}
+.head{max-width:64ch;margin-bottom:52px}
+h2.t{font-family:var(--serif);font-weight:400;font-size:clamp(28px,3.6vw,42px);line-height:1.1;letter-spacing:-.015em;margin:0 0 14px}
+.head p{color:var(--muted);margin:0;font-size:16.5px}
+
+/* tramos del corredor */
+.leg{display:grid;grid-template-columns:110px 1fr 1fr;gap:32px;padding:38px 0;border-top:1px solid var(--rule)}
+.leg:first-of-type{border-top:1.5px solid var(--ink)}
+.legnum{font-family:var(--mono);font-size:12px;color:var(--rust);letter-spacing:.12em;padding-top:6px}
+.legnum b{display:block;font-family:var(--serif);font-size:34px;color:var(--ink);letter-spacing:-.02em;margin-top:6px;font-weight:400}
+.leg h3{font-family:var(--serif);font-weight:400;font-size:26px;margin:0 0 10px;letter-spacing:-.01em}
+.leg .what{color:var(--muted);margin:0;font-size:15.5px}
+.leak{background:var(--card);border-left:3px solid var(--rust);padding:18px 20px}
+.leak b{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--rust);margin-bottom:10px}
+.leak ul{margin:0;padding:0;list-style:none;font-size:14px}
+.leak li{padding:4px 0 4px 16px;position:relative;color:var(--muted)}
+.leak li::before{content:"−";position:absolute;left:0;color:var(--rust);font-family:var(--mono)}
+
+/* producto de entrada */
+.entry{background:var(--ink);color:#fff}
+.entry h2.t{color:#fff}
+.entry .head p{color:#A9C0CC}
+.entry .kick{color:#E8A87C}
+.checkgrid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:start}
+.checklist{list-style:none;margin:0;padding:0;border-top:1px solid #24586F}
+.checklist li{padding:14px 0 14px 26px;border-bottom:1px solid #24586F;position:relative;font-size:15.5px;color:#CFE0E8}
+.checklist li::before{content:"→";position:absolute;left:0;color:#E8A87C}
+.deliver{border:1.5px solid #E8A87C;padding:30px;background:var(--ink-2)}
+.deliver h3{font-family:var(--serif);font-weight:400;font-size:26px;margin:0 0 16px;color:#fff}
+.deliver ul{margin:0 0 22px;padding:0;list-style:none;font-size:14.5px}
+.deliver li{padding:6px 0 6px 20px;position:relative;color:#CFE0E8}
+.deliver li::before{content:"·";position:absolute;left:4px;color:#E8A87C;font-weight:700}
+.deliver .price{font-family:var(--mono);font-size:12px;color:#E8A87C;border-top:1px dotted #24586F;padding-top:16px}
+
+/* servicios */
+.svcs{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.svc{background:var(--card);border:1px solid var(--rule);padding:28px}
+.svc .n{font-family:var(--mono);font-size:11px;color:var(--rust);letter-spacing:.12em}
+.svc h3{font-family:var(--serif);font-weight:400;font-size:23px;margin:14px 0 6px;letter-spacing:-.01em}
+.svc .en{font-family:var(--mono);font-size:10.5px;color:var(--muted);letter-spacing:.06em;margin:0 0 14px}
+.svc p{color:var(--muted);font-size:14.5px;margin:0 0 16px}
+.svc .when{font-family:var(--mono);font-size:11px;color:var(--ink);border-top:1px dotted var(--rule);padding-top:14px}
+
+/* experiencia */
+.exp{display:grid;grid-template-columns:.9fr 1.1fr;gap:60px}
+.exp p{color:var(--muted);margin:0 0 18px;font-size:16.5px}
+.credlist{list-style:none;margin:0;padding:0;border-top:1.5px solid var(--ink)}
+.credlist li{display:grid;grid-template-columns:150px 1fr;gap:20px;padding:15px 0;border-bottom:1px solid var(--rule);font-size:14.5px}
+.credlist b{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--rust);font-weight:500;padding-top:3px}
+.credlist span{color:var(--muted)}
+
+/* contacto */
+.contact{background:var(--card)}
+.contact .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:60px}
+form{display:grid;gap:16px}
+label{display:block}
+label>span{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+input,select,textarea{display:block;width:100%;margin-top:8px;background:var(--paper);border:1px solid var(--rule);color:var(--ink);padding:13px;font:inherit;font-size:15px}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--rust)}
+button{background:var(--rust);color:#fff;border:0;padding:16px;font:inherit;font-weight:700;font-size:15px;cursor:pointer}
+button:hover{background:var(--rust-dk)}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.status{font-family:var(--mono);font-size:12.5px;min-height:20px;color:var(--rust);margin:0}
+.note{font-size:12.5px;color:var(--muted);margin:0}
+footer{padding:30px 0;font-size:13px;color:var(--muted);border-top:1px solid var(--rule)}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+@media(max-width:980px){
+  .burger{display:block}
+  nav{display:none;position:absolute;top:78px;left:0;right:0;flex-direction:column;align-items:flex-start;background:var(--card);border-bottom:1px solid var(--rule);padding:14px 24px}
+  nav.open{display:flex}
+  .hero .wrap,.checkgrid,.exp,.contact .wrap{grid-template-columns:1fr;gap:40px}
+  .svcs{grid-template-columns:1fr 1fr}
+  .leg{grid-template-columns:70px 1fr;gap:20px}
+  .leg .leak{grid-column:1/-1}
+}
+@media(max-width:620px){
+  .svcs{grid-template-columns:1fr}
+  .leg{grid-template-columns:1fr}
+  .credlist li{grid-template-columns:1fr;gap:4px}
+  section{padding:56px 0}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header>
+  <div class="wrap">
+    <a class="brand" href="#top"><b>logistika</b><span>Foreign trade</span></a>
+    <button class="burger" id="burger" aria-expanded="false" aria-controls="nav" aria-label="Open menu">☰</button>
+    <nav id="nav">
+      <a href="#corridor">Where it leaks</a>
+      <a href="#diagnostic">Diagnostic</a>
+      <a href="#services">Services</a>
+      <a href="#experience">Experience</a>
+      <a class="cta" href="#contact">Book a diagnostic</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<section class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <p class="kick">Diagnostic · Management · Optimization</p>
+      <h1>Your import costs more than you think. <em>The problem is where.</em></h1>
+      <p class="lead">Between your supplier and your warehouse there are seven legs, and money can leak on each one without ever appearing on an invoice under that name. In ten days we tell you which leg yours is leaking on, with numbers.</p>
+      <div class="btns">
+        <a class="btn btn-fill" href="#contact">Book a diagnostic</a>
+        <a class="btn btn-line" href="#corridor">See the seven legs</a>
+      </div>
+    </div>
+    <div class="offercard">
+      <h2>Supply Chain Health Check</h2>
+      <dl>
+        <div class="orow"><dt>Duration</dt><dd>10 to 15 days</dd></div>
+        <div class="orow"><dt>What we review</dt><dd>9 areas of the operation</dd></div>
+        <div class="orow"><dt>Deliverable</dt><dd>Findings + 90-day plan</dd></div>
+        <div class="orow"><dt>Price</dt><dd>Fixed, agreed up front</dd></div>
+        <div class="orow"><dt>Commitment after</dt><dd>None</dd></div>
+      </dl>
+      <p class="ofoot">The report is yours, whether we implement it or not.</p>
+    </div>
+  </div>
+</section>
+
+<section id="corridor">
+  <div class="wrap">
+    <div class="head">
+      <p class="kick">The corridor</p>
+      <h2 class="t">Seven legs, seven places your margin goes.</h2>
+      <p>Each leg has its own vendor and its own logic. Nobody sees all of them, which is why the real cost of an import is almost never the one that was quoted.</p>
+    </div>
+
+    <article class="leg">
+      <div class="legnum">LEG<b>01</b></div>
+      <div>
+        <h3>Supplier and purchase</h3>
+        <p class="what">The negotiation sets the Incoterm, and the Incoterm sets who pays what, who insures, and where the risk transfers. Plenty of companies discover this after signing.</p>
+      </div>
+      <div class="leak"><b>Typical leaks</b><ul>
+        <li>An Incoterm that does not suit your operation</li>
+        <li>Origin charges nobody quoted</li>
+        <li>Packing and consolidation left unoptimized</li>
+      </ul></div>
+    </article>
+
+    <article class="leg">
+      <div class="legnum">LEG<b>02</b></div>
+      <div>
+        <h3>Classification and regulation</h3>
+        <p class="what">The tariff code decides duties, permits and standards. A convenient code today is an assessment with penalties tomorrow.</p>
+      </div>
+      <div class="leak"><b>Typical leaks</b><ul>
+        <li>An inherited tariff code nobody revalidated</li>
+        <li>A standard or permit caught at customs, not before</li>
+        <li>Trade agreements and preferences left unused</li>
+      </ul></div>
+    </article>
+
+    <article class="leg">
+      <div class="legnum">LEG<b>03</b></div>
+      <div>
+        <h3>International transport</h3>
+        <p class="what">Air, ocean or ground is not a price decision, it is an inventory decision. Paying for air freight because of poor planning is the most expensive saving there is.</p>
+      </div>
+      <div class="leak"><b>Typical leaks</b><ul>
+        <li>Monthly emergencies solved with air freight</li>
+        <li>Rates never compared across forwarders</li>
+        <li>Freight left unconsolidated across suppliers</li>
+      </ul></div>
+    </article>
+
+    <article class="leg">
+      <div class="legnum">LEG<b>04</b></div>
+      <div>
+        <h3>Documentation</h3>
+        <p class="what">A missing document does not hold up a piece of paper. It holds up a container, and a held container bills by the day.</p>
+      </div>
+      <div class="leak"><b>Typical leaks</b><ul>
+        <li>Demurrage and storage from a late document</li>
+        <li>Incomplete files when an audit arrives</li>
+        <li>Data that does not match between invoice and entry</li>
+      </ul></div>
+    </article>
+
+    <article class="leg">
+      <div class="legnum">LEG<b>05</b></div>
+      <div>
+        <h3>Customs and clearance</h3>
+        <p class="what">Your customs broker does their job. The question is whether anyone on your side reviews fees, charges, times and incidents with the same attention.</p>
+      </div>
+      <div class="leak"><b>Typical leaks</b><ul>
+        <li>Ancillary charges nobody audits</li>
+        <li>Inspections triggered by an avoidable risk profile</li>
+        <li>A single broker with no point of comparison</li>
+      </ul></div>
+    </article>
+
+    <article class="leg">
+      <div class="legnum">LEG<b>06</b></div>
+      <div>
+        <h3>Domestic transport and warehousing</h3>
+        <p class="what">The last leg is usually the worst measured, and it is where the goods are already worth everything that came before.</p>
+      </div>
+      <div class="leak"><b>Typical leaks</b><ul>
+        <li>Handling and detention outside the agreed rate</li>
+        <li>Inventory stalled by a partial delivery</li>
+        <li>Routes that were never redesigned</li>
+      </ul></div>
+    </article>
+
+    <article class="leg">
+      <div class="legnum">LEG<b>07</b></div>
+      <div>
+        <h3>Control and closure</h3>
+        <p class="what">If the file never closes and real cost is never compared against the estimate, the next operation repeats the same mistake under a different entry number.</p>
+      </div>
+      <div class="leak"><b>Typical leaks</b><ul>
+        <li>A real cost per shipment nobody calculates</li>
+        <li>Incidents with no owner and no follow-up</li>
+        <li>Zero indicators to negotiate with vendors</li>
+      </ul></div>
+    </article>
+  </div>
+</section>
+
+<section class="entry" id="diagnostic">
+  <div class="wrap">
+    <div class="head">
+      <p class="kick">Entry product</p>
+      <h2 class="t">Ten days to find out where you are losing.</h2>
+      <p>The cheapest way to find out whether we are useful to you. No contract attached, and a deliverable you keep either way.</p>
+    </div>
+    <div class="checkgrid">
+      <div>
+        <ul class="checklist">
+          <li>Purchasing and supplier terms</li>
+          <li>Tariff classification and applicable regulation</li>
+          <li>International transport: mode, route and rates</li>
+          <li>Customs: fees, charges and incidents</li>
+          <li>Documentation and files</li>
+          <li>Inventory and transfer points</li>
+          <li>Warehousing and distribution</li>
+          <li>Last mile and deliveries</li>
+          <li>Existing indicators, if any</li>
+        </ul>
+      </div>
+      <div class="deliver">
+        <h3>Supply Chain Health Report</h3>
+        <ul>
+          <li>The top 10 problems, ranked by impact</li>
+          <li>Estimated financial impact of each</li>
+          <li>Compliance risks detected</li>
+          <li>Quick wins executable in 30 days</li>
+          <li>The indicators you should be measuring</li>
+          <li>90-day roadmap</li>
+        </ul>
+        <p class="price">Fixed price · Agreed in writing before we start</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="wrap">
+    <div class="head">
+      <p class="kick">After the diagnostic</p>
+      <h2 class="t">We can execute it, or you can.</h2>
+      <p>The report is written so another provider could execute it. If you would rather we did, these are the ways.</p>
+    </div>
+    <div class="svcs">
+      <article class="svc">
+        <span class="n">01</span>
+        <h3>Import management</h3>
+        <p class="en">Import Management 360°</p>
+        <p>We coordinate every shipment from supplier to warehouse: documents, forwarder, customs broker, clearance, domestic transport and file closure.</p>
+        <p class="when">When you already import and want to stop chasing it</p>
+      </article>
+      <article class="svc">
+        <span class="n">02</span>
+        <h3>Import plan</h3>
+        <p class="en">Import Feasibility Plan</p>
+        <p>Product, origin, supplier, tariff code, regulation, duties, Incoterm, route and estimated cost. A feasibility file before you commit money.</p>
+        <p class="when">When you do not import yet and want to start right</p>
+      </article>
+      <article class="svc">
+        <span class="n">03</span>
+        <h3>External department</h3>
+        <p class="en">External Foreign Trade Department</p>
+        <p>The whole function on a monthly retainer: operations, vendors, compliance, cost, indicators and reporting to leadership.</p>
+        <p class="when">When the volume justifies a department you do not want to build</p>
+      </article>
+      <article class="svc">
+        <span class="n">04</span>
+        <h3>Audit and compliance</h3>
+        <p class="en">Foreign Trade Compliance Review</p>
+        <p>Files, entries, classification, processes and internal controls. Findings, risks, priorities and a correction plan.</p>
+        <p class="when">When you want to sleep before the authority asks</p>
+      </article>
+      <article class="svc">
+        <span class="n">05</span>
+        <h3>Project logistics</h3>
+        <p class="en">Project Logistics</p>
+        <p>Supply, import, specialized transport, schedule and installation for industrial and construction projects.</p>
+        <p class="when">When there is a build or a plant start-up involved</p>
+      </article>
+      <article class="svc">
+        <span class="n">06</span>
+        <h3>Interim management</h3>
+        <p class="en">Interim Logistics Management</p>
+        <p>We hold the operation for three to twelve months when the person running it leaves, and hand it back in order.</p>
+        <p class="when">When you lost the owner and cannot hire in a hurry</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="head">
+      <p class="kick">Who does the work</p>
+      <h2 class="t">Fifteen years inside the operation, not around it.</h2>
+    </div>
+    <div class="exp">
+      <div>
+        <p>logistika is led by Adriana Culebro Jiménez, a specialist in international logistics and foreign trade. The difference from a traditional consultancy is simple: she has coordinated these operations from the inside, on corporate accounts, with suppliers across Europe, Asia and India.</p>
+        <p>That matters because supply chain savings are not theoretical. They live in knowing which charge is negotiable, which document always jams, and which week of the month is the wrong one to ship.</p>
+      </div>
+      <ul class="credlist">
+        <li><b>Degree</b><span>BA in Foreign Trade &amp; Customs, Universidad Iberoamericana Puebla · licensed</span></li>
+        <li><b>Master's</b><span>MSc in Logistics &amp; International Trade, Universidad Anáhuac CDMX · licensed</span></li>
+        <li><b>Track record</b><span>15+ years in multimodal operations and complex logistics projects</span></li>
+        <li><b>Operations</b><span>Air, ocean and ground freight coordination; automotive sector accounts</span></li>
+        <li><b>Suppliers</b><span>Coordination with global suppliers in Europe, Asia and India</span></li>
+        <li><b>Leadership</b><span>Administrative, logistics and foreign trade direction across three offices</span></li>
+        <li><b>Projects</b><span>Transfer and installation of metal structures; industrial project supply</span></li>
+        <li><b>Languages</b><span>Spanish native · English · Valid US visa</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div>
+      <p class="kick">Start here</p>
+      <h2 class="t">Tell us what you are importing.</h2>
+      <p class="lead">The product, the origin and a rough volume is enough for a first written read. No cost and no commitment: if we do not see anything worth fixing, we will say so.</p>
+    </div>
+    <form id="form" method="post" action="/api/contact" novalidate>
+      <label><span>Company</span><input name="company" required maxlength="120" placeholder="Your company"></label>
+      <label><span>Work email</span><input type="email" name="email" required maxlength="254" placeholder="you@company.com"></label>
+      <label><span>Where you are</span><select name="stage">
+        <option value="Already importing">Already importing — I want to know if I am overpaying</option>
+        <option value="Want to start">I want to start importing</option>
+        <option value="Specific problem">I have a specific problem to solve</option>
+        <option value="Outsource">I want to outsource the whole function</option>
+      </select></label>
+      <label><span>Your operation</span><textarea name="message" rows="5" required maxlength="4000" placeholder="Product, country of origin, approximate volume, and what is not working today"></textarea></label>
+      <div class="hp" aria-hidden="true"><label>Leave this empty<input name="website" tabindex="-1" autocomplete="off"></label></div>
+      <input type="hidden" name="ts" id="ts">
+      <button type="submit" id="send">Request a diagnostic</button>
+      <p class="status" id="st" role="status" aria-live="polite"></p>
+      <p class="note">We use your message to reply to you. No lists, no third parties.</p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap"><span>logistika · Querétaro, México</span><span id="yr"></span></div></footer>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"ProfessionalService","@id":"https://www.logistika.mx/#logistika","name":"logistika",
+"description":"Diagnostic, management and optimization of foreign trade and supply chain operations for industrial companies in Querétaro and the Bajío, México.",
+"url":"https://www.logistika.mx/","areaServed":["Querétaro","Bajío","México"],"availableLanguage":["es","en"],
+"address":{"@type":"PostalAddress","addressLocality":"Santiago de Querétaro","addressRegion":"Querétaro","addressCountry":"MX"}},
+{"@type":"Service","name":"Supply Chain Health Check","serviceType":"Supply chain diagnostic","provider":{"@id":"https://www.logistika.mx/#logistika"}},
+{"@type":"Service","name":"Import Management 360","serviceType":"Import management","provider":{"@id":"https://www.logistika.mx/#logistika"}},
+{"@type":"Service","name":"External Foreign Trade Department","serviceType":"Foreign trade outsourcing","provider":{"@id":"https://www.logistika.mx/#logistika"}}]}
+</script>
+
+<script>
+(function(){
+  "use strict";
+  var $=function(i){return document.getElementById(i);};
+  if($("yr")) $("yr").textContent=String(new Date().getFullYear());
+
+  var b=$("burger"),n=$("nav");
+  if(b&&n){
+    b.addEventListener("click",function(){
+      var open=n.classList.toggle("open");
+      b.setAttribute("aria-expanded",open?"true":"false");
+      b.setAttribute("aria-label",open?"Close menu":"Open menu");
+    });
+    n.addEventListener("click",function(e){if(e.target.tagName==="A"){n.classList.remove("open");b.setAttribute("aria-expanded","false");}});
+    document.addEventListener("keydown",function(e){if(e.key==="Escape"&&n.classList.contains("open")){n.classList.remove("open");b.setAttribute("aria-expanded","false");b.focus();}});
+  }
+
+  var f=$("form"),st=$("st"),ts=$("ts");
+  if(!f||!st) return;
+  if(ts) ts.value=String(Date.now());
+  f.addEventListener("submit",function(e){
+    e.preventDefault();
+    if(f.website&&f.website.value!==""){st.textContent="Thanks — we will be in touch.";return;}
+    if(ts&&Date.now()-Number(ts.value)<3000){st.textContent="Take a moment to describe your operation, then send.";return;}
+    if(!f.checkValidity()){st.textContent="Check the company, email and description fields.";f.reportValidity();return;}
+    st.textContent="Ready to send. Connect POST /api/contact to enable delivery.";
+  });
+})();
+</script>
+</body>
+</html>

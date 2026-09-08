@@ -1,0 +1,499 @@
+<!doctype html>
+<!--
+  LOGISTIKA — PROPOSAL 6 · "POSTER"
+
+  The opposite move from proposals 4 and 5. Instead of explaining, it declares.
+  Brand blue takes over the whole surface — the way the logo does in the
+  LOGO_LOGISTIKA-02 lockup — and the page becomes a sequence of full-bleed
+  statements in huge type, alternating blue and white bands.
+
+  Amber is used once per band, as punctuation. Periwinkle carries the secondary
+  voice. Nothing else. The restraint is the design.
+
+  Why it fits the business: the buyer is a plant director who reads 40 vendor
+  decks a year, all of them dense. A page that says one thing per screen, in
+  type they can read across the room, is the one they remember.
+
+  No CSP meta on purpose — a meta CSP with style-src 'self' blocks this inline
+  <style> block and strips the page of all design.
+-->
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>We Take the Whole Chain | logistika — Foreign Trade &amp; Supply Chain, México</title>
+<meta name="description" content="Seven vendors between your supplier and your plant. logistika becomes the single point of control: import management, supply chain optimization and your external foreign trade department. Querétaro, México.">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#385DAB">
+<link rel="canonical" href="https://www.logistika.mx/">
+
+<style>
+:root{
+  --blue:#385DAB; --blue-dk:#27407A; --blue-deep:#1E3163; --peri:#8292CA;
+  --amber:#F6B334; --amber-dk:#8A5E08;
+  --ink:#111A2E; --muted:#5B6A88; --paper:#FFFFFF; --soft:#EEF2FA;
+  --max:1240px;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --mono:ui-monospace,"SFMono-Regular",Menlo,Consolas,"Liberation Mono",monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--amber);outline-offset:4px}
+.skip{position:absolute;left:-9999px}
+.skip:focus{left:14px;top:14px;background:var(--amber);color:var(--ink);padding:12px 18px;border-radius:99px;z-index:99}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 32px}
+h1,h2,h3{margin:0;font-weight:800;letter-spacing:-.045em;line-height:.94}
+
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;display:inline-flex;align-items:center;gap:10px;margin:0 0 30px;color:var(--blue)}
+.eyebrow::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--amber);flex:none}
+.on-blue .eyebrow{color:#BFD0EE}
+
+/* header */
+header{position:sticky;top:0;z-index:40;background:var(--paper);border-bottom:1px solid var(--soft)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:88px;gap:24px}
+.brand{display:block;text-decoration:none;line-height:0}
+.brand img{height:36px;width:auto;display:block}
+nav{display:flex;align-items:center;gap:30px;font-size:15px;font-weight:600;letter-spacing:-.01em}
+nav a{text-decoration:none;color:var(--muted)}
+nav a:hover{color:var(--blue)}
+.cta{background:var(--ink);color:#fff!important;padding:13px 24px;border-radius:99px;font-size:14.5px}
+.cta:hover{background:var(--blue)}
+.burger{display:none;background:var(--soft);border:0;border-radius:14px;width:48px;height:44px;font-size:19px;cursor:pointer;color:var(--blue)}
+
+/* full-bleed bands */
+.band{padding:120px 0}
+.band.blue{background:var(--blue);color:#fff}
+.band.deep{background:var(--blue-deep);color:#fff}
+.band.soft{background:var(--soft)}
+.on-blue h2,.on-blue h1{color:#fff}
+
+/* hero */
+.hero h1{font-size:clamp(52px,10.5vw,142px);max-width:11ch}
+.hero h1 .dot{display:inline-block;width:.19em;height:.19em;border-radius:50%;background:var(--amber);vertical-align:baseline;margin-left:.06em}
+.hero .sub{font-size:clamp(19px,2.1vw,26px);color:var(--muted);max-width:34ch;margin:44px 0 0;font-weight:500;letter-spacing:-.02em;line-height:1.35}
+.btns{display:flex;gap:14px;flex-wrap:wrap;margin-top:48px}
+.btn{display:inline-block;text-decoration:none;padding:19px 34px;border-radius:99px;font-weight:700;font-size:16px;border:2px solid var(--ink)}
+.btn-d{background:var(--ink);color:#fff}
+.btn-d:hover{background:var(--blue)}
+.btn-o{color:var(--ink)}
+.btn-o:hover{background:var(--ink);color:#fff}
+.on-blue .btn-d{background:var(--amber);color:var(--ink);border-color:var(--amber)}
+.on-blue .btn-d:hover{background:#FFC85C}
+.on-blue .btn-o{color:#fff;border-color:#fff}
+.on-blue .btn-o:hover{background:#fff;color:var(--blue)}
+
+.figures{display:flex;flex-wrap:wrap;gap:0;margin-top:80px;border-top:2px solid var(--ink)}
+.fig{padding:26px 44px 0 0;margin-right:44px;border-right:1px solid rgba(17,26,46,.14)}
+.fig:last-child{border-right:0;margin-right:0;padding-right:0}
+.fig b{display:block;font-size:46px;letter-spacing:-.05em;line-height:1;color:var(--blue)}
+.fig span{font-size:14px;color:var(--muted);display:block;margin-top:8px;max-width:18ch}
+
+/* statement bands */
+.statement{font-size:clamp(34px,6.2vw,86px);max-width:16ch;letter-spacing:-.045em}
+.statement .amber{color:var(--amber)}
+.statement .peri{color:var(--peri)}
+.after{font-size:clamp(17px,1.7vw,21px);max-width:44ch;margin:40px 0 0;line-height:1.5}
+.band.blue .after,.band.deep .after{color:#C4D3EF}
+.band.soft .after,.band .after{color:var(--muted)}
+
+/* three problems, oversized numerals */
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:56px;margin-top:76px}
+.tri b{display:block;font-size:76px;line-height:.8;letter-spacing:-.06em;color:var(--amber);margin-bottom:26px}
+.tri h3{font-size:25px;margin-bottom:14px;letter-spacing:-.03em}
+.tri p{margin:0;font-size:16px;line-height:1.55}
+.band.blue .tri p{color:#C4D3EF}
+.band .tri p{color:var(--muted)}
+
+/* levels as three big slabs */
+.slabs{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:70px}
+.slab{background:var(--paper);border-radius:28px;padding:44px 38px;display:flex;flex-direction:column;color:var(--ink)}
+.slab.hi{background:var(--amber)}
+.slab .step{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:20px}
+.slab.hi .step{color:var(--amber-dk)}
+.slab h3{font-size:46px;letter-spacing:-.05em;margin-bottom:14px}
+.slab .for{font-size:16px;color:var(--muted);margin:0 0 30px;line-height:1.5}
+.slab.hi .for{color:#7A5305}
+.slab ul{list-style:none;margin:0 0 32px;padding:0;font-size:15.5px}
+.slab li{padding:10px 0;border-bottom:1px solid rgba(17,26,46,.10);color:var(--muted)}
+.slab.hi li{border-color:rgba(17,26,46,.18);color:#6B4904}
+.slab li:last-child{border-bottom:0}
+.slab .foot{margin-top:auto}
+.slab .model{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0 0 18px}
+.slab.hi .model{color:#7A5305}
+.slabbtn{display:block;text-align:center;text-decoration:none;background:var(--ink);color:#fff;border-radius:99px;padding:16px;font-weight:700;font-size:15px}
+.slabbtn:hover{background:var(--blue)}
+
+/* health check split */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:32px;overflow:hidden;margin-top:70px}
+.split .a{background:var(--amber);color:var(--ink);padding:56px}
+.split .b{background:var(--paper);color:var(--ink);padding:56px}
+.split h3{font-size:38px;letter-spacing:-.04em;margin-bottom:20px}
+.split p{font-size:16.5px;color:#6B4904;margin:0 0 28px;line-height:1.55}
+.split .b p{color:var(--muted)}
+.split ul{list-style:none;margin:0;padding:0;font-size:16px}
+.split li{padding:13px 0 13px 30px;position:relative;border-bottom:1px solid rgba(17,26,46,.10)}
+.split li:last-child{border-bottom:0}
+.split li::before{content:"";position:absolute;left:0;top:22px;width:10px;height:10px;border-radius:50%;background:var(--blue)}
+.split .a li::before{background:var(--ink)}
+.split .meta{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin:30px 0 0}
+
+/* services list, typographic */
+.svclist{margin-top:70px;border-top:2px solid rgba(255,255,255,.35)}
+.svcrow{display:grid;grid-template-columns:80px 1fr 1.25fr;gap:36px;padding:34px 0;border-bottom:1px solid rgba(255,255,255,.22);align-items:baseline}
+.svcrow .n{font-family:var(--mono);font-size:13px;letter-spacing:.14em;color:var(--amber)}
+.svcrow h3{font-size:clamp(23px,2.6vw,34px);letter-spacing:-.035em}
+.svcrow p{margin:0;font-size:16px;color:#C4D3EF;line-height:1.5}
+
+/* method */
+.marks{display:grid;grid-template-columns:repeat(5,1fr);gap:26px;margin-top:70px}
+.mark b{display:block;font-family:var(--mono);font-size:12px;letter-spacing:.16em;color:var(--amber);margin-bottom:18px}
+.mark h3{font-size:26px;letter-spacing:-.035em;margin-bottom:12px}
+.mark p{margin:0;font-size:15px;color:var(--muted);line-height:1.5}
+
+/* who */
+.who{display:grid;grid-template-columns:1fr 1fr;gap:70px;margin-top:60px;align-items:start}
+.who p{font-size:19px;color:var(--muted);margin:0 0 22px;line-height:1.55;letter-spacing:-.015em}
+.who .quote{font-size:clamp(24px,2.7vw,34px);letter-spacing:-.035em;color:var(--ink);font-weight:700;line-height:1.2;margin:0 0 28px}
+.credlist{list-style:none;margin:0;padding:0;font-size:16px}
+.credlist li{display:grid;grid-template-columns:150px 1fr;gap:24px;padding:16px 0;border-bottom:1px solid rgba(17,26,46,.10)}
+.credlist li:last-child{border-bottom:0}
+.credlist b{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);font-weight:600;padding-top:4px}
+.credlist span{color:var(--muted)}
+
+/* faq */
+.faq{max-width:82ch;margin-top:56px;border-top:2px solid var(--ink)}
+.faq details{border-bottom:1px solid rgba(17,26,46,.12)}
+.faq summary{cursor:pointer;padding:26px 0;font-weight:700;font-size:clamp(19px,2vw,25px);letter-spacing:-.03em;list-style:none;display:flex;justify-content:space-between;gap:24px;align-items:center}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-size:32px;color:var(--amber);font-weight:400;line-height:1;flex:none}
+.faq details[open] summary::after{content:"−"}
+.faq p{margin:0 0 28px;color:var(--muted);font-size:17px;max-width:66ch;line-height:1.55}
+
+/* contact */
+.contact{background:var(--ink);color:#fff}
+.contact .wrap{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:start}
+.contact h2{font-size:clamp(38px,5.4vw,72px);max-width:12ch;color:#fff}
+.contact .after{color:#98A6C4}
+form{display:grid;gap:18px}
+label{display:block}
+label>span{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#98A6C4}
+input,select,textarea{display:block;width:100%;margin-top:10px;background:#1D2A46;border:1px solid #33415F;border-radius:16px;color:#fff;padding:17px;font:inherit;font-size:16px}
+input:focus,select:focus,textarea:focus{outline:3px solid var(--amber)}
+button{background:var(--amber);color:var(--ink);border:0;border-radius:99px;padding:19px;font:inherit;font-weight:800;font-size:16.5px;cursor:pointer}
+button:hover{background:#FFC85C}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.status{font-family:var(--mono);font-size:12.5px;min-height:20px;color:var(--amber);margin:0}
+.note{font-size:13px;color:#7C89A8;margin:0}
+footer{background:var(--ink);color:#7C89A8;padding:34px 0;font-size:13.5px;border-top:1px solid #2A3652}
+footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
+footer img{height:28px;width:auto;opacity:.9}
+
+@media(max-width:1040px){
+  .burger{display:block}
+  nav{display:none;position:absolute;top:88px;left:0;right:0;flex-direction:column;align-items:flex-start;background:var(--paper);border-bottom:1px solid var(--soft);padding:22px 32px;gap:20px}
+  nav.open{display:flex}
+  .band{padding:84px 0}
+  .trio,.slabs,.marks{grid-template-columns:1fr 1fr}
+  .who,.contact .wrap,.split{grid-template-columns:1fr}
+  .svcrow{grid-template-columns:60px 1fr;gap:20px}
+  .svcrow p{grid-column:2}
+}
+@media(max-width:660px){
+  .trio,.slabs,.marks{grid-template-columns:1fr}
+  .credlist li{grid-template-columns:1fr;gap:5px}
+  .band{padding:64px 0}
+  .split .a,.split .b{padding:34px}
+  .fig{border-right:0;padding-right:0;margin-right:0;width:50%}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header>
+  <div class="wrap">
+    <a class="brand" href="#top"><img src="data:image/png;base64,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" alt="logistika" width="420" height="179"></a>
+    <button class="burger" id="burger" aria-expanded="false" aria-controls="nav" aria-label="Open menu">☰</button>
+    <nav id="nav">
+      <a href="#problem">The problem</a>
+      <a href="#levels">Levels</a>
+      <a href="#check">Health check</a>
+      <a href="#services">Services</a>
+      <a href="#who">Who</a>
+      <a class="cta" href="#contact">Request an assessment</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<section class="band hero" id="top">
+  <div class="wrap">
+    <p class="eyebrow">Foreign trade · Logistics · Supply chain</p>
+    <h1>We take the whole chain<span class="dot"></span></h1>
+    <p class="sub">Seven vendors sit between your supplier and your plant. You should only have to talk to one.</p>
+    <div class="btns">
+      <a class="btn btn-d" href="#check">Start with a health check</a>
+      <a class="btn btn-o" href="#levels">See the three levels</a>
+    </div>
+    <div class="figures">
+      <div class="fig"><b>15+</b><span>years in foreign trade</span></div>
+      <div class="fig"><b>3</b><span>continents of suppliers coordinated</span></div>
+      <div class="fig"><b>7</b><span>links we take off your desk</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="band blue on-blue" id="problem">
+  <div class="wrap">
+    <p class="eyebrow">The problem</p>
+    <h2 class="statement">Everyone does their part. <span class="amber">The operation still bleeds.</span></h2>
+    <p class="after">The customs broker, the forwarder, the carrier and the supplier each perform correctly on their own leg. Nobody is accountable for the whole — so the real cost only surfaces after it has been paid.</p>
+    <div class="trio">
+      <div class="tri"><b>01</b><h3>Cost arrives late</h3><p>Demurrage, storage, handling, reclassifications. Charges nobody forecast, discovered on the invoice instead of on the plan.</p></div>
+      <div class="tri"><b>02</b><h3>One person is the system</h3><p>The operation lives in someone's head and inbox. When they resign or take leave, the company stops.</p></div>
+      <div class="tri"><b>03</b><h3>No numbers to decide with</h3><p>Without cost per shipment, OTIF and an incident history, every vendor negotiation is done blind.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="band soft" id="levels">
+  <div class="wrap">
+    <p class="eyebrow">Three levels</p>
+    <h2 class="statement">Enter where you are. <span class="peri">Move up when it pays.</span></h2>
+    <p class="after">Closed scope, price agreed in writing before anything starts. You can stay at any level indefinitely.</p>
+    <div class="slabs">
+      <article class="slab">
+        <p class="step">Level 01</p>
+        <h3>Start</h3>
+        <p class="for">You want to begin importing and do not yet know whether the product is viable, what it will really cost, or which permits it needs.</p>
+        <ul>
+          <li>Product, supplier and origin analysis</li>
+          <li>Tariff classification and regulation</li>
+          <li>Duties and total landed cost</li>
+          <li>Incoterm, regime and route</li>
+          <li>Feasibility file you keep</li>
+        </ul>
+        <div class="foot">
+          <p class="model">Fixed-price project</p>
+          <a class="slabbtn" href="#contact">Get an import plan</a>
+        </div>
+      </article>
+
+      <article class="slab hi">
+        <p class="step">Level 02 · Most contracted</p>
+        <h3>Manage</h3>
+        <p class="for">You already run 5 to 30 shipments a month and your team spends its days chasing documents, emails and carriers.</p>
+        <ul>
+          <li>PO intake and supplier follow-up</li>
+          <li>Document review before shipping</li>
+          <li>Forwarder and transport coordination</li>
+          <li>ETA, clearance and release</li>
+          <li>Plant delivery, file closure, KPIs</li>
+        </ul>
+        <div class="foot">
+          <p class="model">Retainer + fee per shipment</p>
+          <a class="slabbtn" href="#contact">Quote my operation</a>
+        </div>
+      </article>
+
+      <article class="slab">
+        <p class="step">Level 03</p>
+        <h3>Partner</h3>
+        <p class="for">You need the function, but not the headcount, the learning curve or the dependency on a single person.</p>
+        <ul>
+          <li>Everything in Manage</li>
+          <li>Exports as well as imports</li>
+          <li>Procurement and vendor management</li>
+          <li>Compliance and document audit</li>
+          <li>Cost control and board reporting</li>
+        </ul>
+        <div class="foot">
+          <p class="model">Monthly retainer · annual</p>
+          <a class="slabbtn" href="#contact">Evaluate the model</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="check">
+  <div class="wrap">
+    <p class="eyebrow">Entry product</p>
+    <h2 class="statement">Ten days. <span class="amber">Then you know.</span></h2>
+    <p class="after">The cheapest way to find out whether we are useful to each other. No contract attached, and the report is yours whether we implement it or not.</p>
+    <div class="split">
+      <div class="a">
+        <h3>What we survey</h3>
+        <p>Nine areas of the operation you already run, reviewed against how it should be specified.</p>
+        <ul>
+          <li>Purchasing and supplier terms</li>
+          <li>Tariff classification and regulation</li>
+          <li>International transport and rates</li>
+          <li>Customs cost and incidents</li>
+          <li>Documentation and files</li>
+          <li>Inventory, warehousing, last mile</li>
+        </ul>
+      </div>
+      <div class="b">
+        <h3>What you get</h3>
+        <p>A written report, structured so another provider could execute it if you would rather they did.</p>
+        <ul>
+          <li>Top 10 problems, ranked by impact</li>
+          <li>Estimated cost of each one</li>
+          <li>Compliance risks detected</li>
+          <li>Quick wins for the next 30 days</li>
+          <li>The KPIs you should be tracking</li>
+          <li>90-day roadmap</li>
+        </ul>
+        <p class="meta">10–15 days · fixed price · no commitment after</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band deep on-blue" id="services">
+  <div class="wrap">
+    <p class="eyebrow">Core services</p>
+    <h2 class="statement">Six ways we take <span class="amber">work off your desk.</span></h2>
+    <div class="svclist">
+      <div class="svcrow"><span class="n">01</span><h3>External supply chain management</h3><p>We run the function: procurement logistics, suppliers, imports, exports, transport, customs, inventory, KPIs and incidents.</p></div>
+      <div class="svcrow"><span class="n">02</span><h3>Import management</h3><p>Every shipment coordinated from the supplier to your warehouse, with a closed file and KPIs per operation.</p></div>
+      <div class="svcrow"><span class="n">03</span><h3>Supply chain optimization</h3><p>We move no freight. We find the leak: purchasing, lead times, inventory, routes, customs, warehousing, last mile.</p></div>
+      <div class="svcrow"><span class="n">04</span><h3>Logistics control tower</h3><p>Shipment monitoring, ETA, delays, incidents, OTIF and cost. You get a single number to call.</p></div>
+      <div class="svcrow"><span class="n">05</span><h3>Project logistics</h3><p>Supply, import, specialized transport, schedule and installation for industrial and construction projects.</p></div>
+      <div class="svcrow"><span class="n">06</span><h3>Interim logistics management</h3><p>We hold the operation for three to twelve months when the person running it leaves, and hand it back in order.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="band soft">
+  <div class="wrap">
+    <p class="eyebrow">How we work</p>
+    <h2 class="statement">Five steps. <span class="peri">Always this order.</span></h2>
+    <div class="marks">
+      <div class="mark"><b>01</b><h3>Diagnose</h3><p>The real operation, not the one on the org chart.</p></div>
+      <div class="mark"><b>02</b><h3>Design</h3><p>Route, regime, Incoterm, documents and owners per link.</p></div>
+      <div class="mark"><b>03</b><h3>Implement</h3><p>Procedures, vendors and controls, with your team inside.</p></div>
+      <div class="mark"><b>04</b><h3>Operate</h3><p>Day-to-day coordination, and we answer when it jams.</p></div>
+      <div class="mark"><b>05</b><h3>Optimize</h3><p>Measure, compare, find the next saving. Every quarter.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="who">
+  <div class="wrap">
+    <p class="eyebrow">Who does the work</p>
+    <h2 class="statement">Fifteen years <span class="amber">inside the operation.</span></h2>
+    <div class="who">
+      <div>
+        <p class="quote">Supply chain savings are not theoretical. They live in knowing which charge is negotiable and which document always jams.</p>
+        <p>logistika is led by Adriana Culebro Jiménez, a specialist in international logistics and foreign trade. She has coordinated these operations from the inside, on corporate accounts, with suppliers across Europe, Asia and India.</p>
+        <p>Not around the operation. Inside it.</p>
+      </div>
+      <ul class="credlist">
+        <li><b>Degree</b><span>BA in Foreign Trade &amp; Customs, Universidad Iberoamericana Puebla · licensed</span></li>
+        <li><b>Master's</b><span>MSc in Logistics &amp; International Trade, Universidad Anáhuac CDMX · licensed</span></li>
+        <li><b>Track record</b><span>15+ years in multimodal operations and complex logistics projects</span></li>
+        <li><b>Operations</b><span>Air, ocean and ground freight; automotive corporate accounts</span></li>
+        <li><b>Suppliers</b><span>Global suppliers in Europe, Asia and India</span></li>
+        <li><b>Leadership</b><span>Administrative, logistics and foreign trade direction across three offices</span></li>
+        <li><b>Languages</b><span>Spanish native · English · Valid US visa</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="band soft">
+  <div class="wrap">
+    <p class="eyebrow">Questions</p>
+    <h2 class="statement">The honest answers.</h2>
+    <div class="faq">
+      <details><summary>Are you a customs broker?</summary><p>No, and the distinction matters. In Mexico customs clearance is legally reserved to a licensed customs broker. logistika coordinates, supervises and audits yours, and answers for the result of the whole operation — but does not replace their legal function or charge for it.</p></details>
+      <details><summary>Are you a forwarder or a carrier?</summary><p>Also no. We own no trucks, ships or warehouses, and that is an advantage: we can select and compare vendors based on your operation rather than on what we have sitting idle in a yard.</p></details>
+      <details><summary>What happens to our current customs broker?</summary><p>They stay, if they perform. Part of the work is evaluating them with data — times, charges, incidents — and telling you honestly whether to keep, renegotiate or compare. Changing vendors is a possible conclusion, not a goal.</p></details>
+      <details><summary>How do you charge?</summary><p>Start is a fixed-price project. Manage is a monthly retainer plus a fee per shipment. Partner is a monthly retainer on an annual agreement. In all three, scope and price are agreed in writing before work begins.</p></details>
+      <details><summary>Do you work with foreign companies entering Mexico?</summary><p>Yes, and it is one of the most natural fits: a company from Europe, Asia or the United States that will sell or manufacture here needs someone to run the Mexican side of the chain from the first shipment.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="band contact" id="contact">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">Start here</p>
+      <h2>Tell us what you are importing.</h2>
+      <p class="after">The product, the origin and a rough volume is enough for a first written read. If we do not see anything worth fixing, we will say so.</p>
+    </div>
+    <form id="form" method="post" action="/api/contact" novalidate>
+      <label><span>Company</span><input name="company" required maxlength="120" placeholder="Your company"></label>
+      <label><span>Work email</span><input type="email" name="email" required maxlength="254" placeholder="you@company.com"></label>
+      <label><span>Where you are</span><select name="stage">
+        <option value="Already importing">Already importing — I want to know if I am overpaying</option>
+        <option value="Want to start">I want to start importing</option>
+        <option value="Specific problem">I have a specific problem to solve</option>
+        <option value="Outsource">I want to outsource the whole function</option>
+      </select></label>
+      <label><span>Your operation</span><textarea name="message" rows="5" required maxlength="4000" placeholder="Product, country of origin, approximate volume, and what is not working today"></textarea></label>
+      <div class="hp" aria-hidden="true"><label>Leave this empty<input name="website" tabindex="-1" autocomplete="off"></label></div>
+      <input type="hidden" name="ts" id="ts">
+      <button type="submit">Request an assessment</button>
+      <p class="status" id="st" role="status" aria-live="polite"></p>
+      <p class="note">We use your message to reply to you. No lists, no third parties.</p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <img src="data:image/png;base64,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" alt="logistika" width="360" height="193">
+    <span>Querétaro, México · <span id="yr"></span></span>
+  </div>
+</footer>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"ProfessionalService","@id":"https://www.logistika.mx/#logistika","name":"logistika",
+"description":"Foreign trade, logistics and supply chain management for industrial companies in Mexico.",
+"url":"https://www.logistika.mx/","areaServed":["Querétaro","Bajío","México"],"availableLanguage":["en","es"],
+"address":{"@type":"PostalAddress","addressLocality":"Santiago de Querétaro","addressRegion":"Querétaro","addressCountry":"MX"}},
+{"@type":"Service","name":"Supply Chain Health Check","serviceType":"Supply chain diagnostic","provider":{"@id":"https://www.logistika.mx/#logistika"}},
+{"@type":"Service","name":"Import Management","serviceType":"Import management","provider":{"@id":"https://www.logistika.mx/#logistika"}},
+{"@type":"Service","name":"External Foreign Trade Department","serviceType":"Foreign trade outsourcing","provider":{"@id":"https://www.logistika.mx/#logistika"}},
+{"@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Are you a customs broker?","acceptedAnswer":{"@type":"Answer","text":"No. In Mexico customs clearance is legally reserved to a licensed customs broker. logistika coordinates, supervises and audits yours, but does not replace their legal function."}}]}]}
+</script>
+
+<script>
+(function(){
+  "use strict";
+  var $=function(i){return document.getElementById(i);};
+  if($("yr")) $("yr").textContent=String(new Date().getFullYear());
+  var b=$("burger"),n=$("nav");
+  if(b&&n){
+    b.addEventListener("click",function(){
+      var open=n.classList.toggle("open");
+      b.setAttribute("aria-expanded",open?"true":"false");
+      b.setAttribute("aria-label",open?"Close menu":"Open menu");
+    });
+    n.addEventListener("click",function(e){if(e.target.tagName==="A"){n.classList.remove("open");b.setAttribute("aria-expanded","false");}});
+    document.addEventListener("keydown",function(e){if(e.key==="Escape"&&n.classList.contains("open")){n.classList.remove("open");b.setAttribute("aria-expanded","false");b.focus();}});
+  }
+  var f=$("form"),st=$("st"),ts=$("ts");
+  if(!f||!st) return;
+  if(ts) ts.value=String(Date.now());
+  f.addEventListener("submit",function(e){
+    e.preventDefault();
+    if(f.website&&f.website.value!==""){st.textContent="Thanks — we will be in touch.";return;}
+    if(ts&&Date.now()-Number(ts.value)<3000){st.textContent="Take a moment to describe your operation, then send.";return;}
+    if(!f.checkValidity()){st.textContent="Check the company, email and description fields.";f.reportValidity();return;}
+    st.textContent="Ready to send. Connect POST /api/contact to enable delivery.";
+  });
+})();
+</script>
+</body>
+</html>
