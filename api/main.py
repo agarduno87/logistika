@@ -478,4 +478,4 @@ class SafeStaticFiles(StaticFiles):
         return await super().get_response(path, scope)
 
 
-app.mount("/", SafeStaticFiles(directory=str(SITE_DIR), html=True), name="site")
+# app.mount("/", SafeStaticFiles(directory=str(SITE_DIR), html=True), name="site") - Comentando por errores en el backend
