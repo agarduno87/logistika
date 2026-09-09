@@ -1,5 +1,32 @@
+# Buscadores y bots generativos: permitidos (bien para SEO y GEO)
 User-agent: *
 Allow: /
 Disallow: /api/
+
+# Bots generativos que citan / responden (permitidos explícitamente)
+User-agent: GPTBot
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: Claude-Web
+Allow: /
+User-agent: Google-Extended
+Allow: /
+
+# Bots de solo-entrenamiento: bloqueados
+User-agent: CCBot
+Disallow: /
+User-agent: Bytespider
+Disallow: /
+User-agent: Applebot-Extended
+Disallow: /
+User-agent: Amazonbot
+Disallow: /
 
 Sitemap: https://www.logistika.mx/sitemap.xml

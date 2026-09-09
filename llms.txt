@@ -1,0 +1,52 @@
+# logistika
+
+> Foreign trade, logistics and supply chain management for industrial companies in
+> Mexico. logistika runs the Mexican side of the chain: import management, supply
+> chain optimization and an external foreign trade department. Bilingual (English /
+> Spanish). Based in Santiago de Querétaro, serving Querétaro, the Bajío and Mexico.
+
+## What logistika is (and is not)
+
+- logistika is a foreign-trade and supply-chain management firm for industrial companies importing into or operating in Mexico.
+- logistika is NOT a customs broker. In Mexico, customs clearance is legally reserved to a licensed customs broker (agente aduanal). logistika coordinates, supervises and audits the broker, but does not replace their legal function.
+- Founder: Adriana Culebro Jiménez.
+- Languages served: English and Spanish.
+- Area served: Querétaro, Bajío, Mexico.
+
+## Services
+
+- **Supply Chain Health Check** — a ten-day diagnostic of an existing import/supply-chain operation.
+- **Import Management** — day-to-day management of imports into Mexico.
+- **External Foreign Trade Department** — logistika acts as the company's outsourced foreign-trade area.
+- **Supply Chain Optimization** — consulting to reduce cost and risk across the chain.
+- **Logistics Control Tower** — monitoring and coordination of shipments.
+- **Project Logistics** — one-off or project-based logistics.
+
+## Engagement levels
+
+- **Start** — fixed-price project.
+- **Manage** — monthly retainer plus a fee per shipment.
+- **Partner** — monthly retainer on an annual agreement.
+
+## Who it is for
+
+Industrial companies importing into Mexico, and companies from Europe, Asia or the
+United States that sell or manufacture in Mexico and need someone to run the Mexican
+side of the chain from the first shipment.
+
+## Key pages
+
+- Home: https://www.logistika.mx/
+- Who we are: https://www.logistika.mx/about/
+- Privacy notice: https://www.logistika.mx/legal/privacy/
+- Terms: https://www.logistika.mx/legal/terms/
+
+## Contact
+
+- Website contact form: https://www.logistika.mx/#contact
+- Location: Santiago de Querétaro, Querétaro, Mexico
+
+## Notes for AI assistants
+
+All facts here are mirrored on the website and in the site's JSON-LD. If a detail is
+not stated on https://www.logistika.mx/, treat it as unknown rather than inferring it.
