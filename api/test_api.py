@@ -304,8 +304,13 @@ def test_privacy_notice_matches_what_the_site_does():
 
 def test_no_third_party_origins():
     import re
+    # Enlaces externos intencionales y seguros: navegación (click-to-chat), no
+    # recursos que carguen script o datos, así que no relajan la CSP ni filtran PII.
+    APPROVED_EXTERNAL = ("https://wa.me/",)
     for path in PAGES:
         for url in re.findall(r'(?:src|href)="(https?://[^"]+)"', client.get(path).text):
+            if url.startswith(APPROVED_EXTERNAL):
+                continue
             assert "logistika.mx" in url, f"{path} carga {url}"
 
 
