@@ -1,0 +1,22 @@
+# Secretos y entorno
+.env
+api/.env
+*.env
+!*.env.example
+
+# Base de datos local (leads)
+*.db
+*.sqlite
+*.sqlite3
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# macOS
+.DS_Store
+
+# Artefactos de despliegue previos
+.vercel/
