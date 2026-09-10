@@ -1,0 +1,16 @@
+# logistika — reglas para hosting compartido (Apache/cPanel, Neubox)
+
+# 1) El formulario manda a /api/contact (heredado del backend Python).
+#    En Neubox no hay Python: redirigimos esa ruta al receptor PHP.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteRule ^api/contact/?$ /contact.php [L]
+</IfModule>
+
+# 2) Blindaje: nunca servir secretos, base de datos ni código de servidor.
+<FilesMatch "(^\.env|\.env\.|\.db$|\.sqlite3?$|\.py$|\.sh$|requirements.*\.txt$)">
+  Require all denied
+</FilesMatch>
+
+# 3) No permitir listar el contenido de carpetas.
+Options -Indexes
