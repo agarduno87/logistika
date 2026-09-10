@@ -20,3 +20,8 @@ __pycache__/
 
 # Artefactos de despliegue previos
 .vercel/
+
+# Node (solo para pruebas de navegador con jsdom)
+node_modules/
+package.json
+package-lock.json
