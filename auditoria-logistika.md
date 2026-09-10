@@ -47,7 +47,7 @@ Los tres problemas de fondo:
 | 5 | ✅ | ~~Sitemap sin `lastmod`~~ → **4/4 con fecha real** (resuelto) | `grep -c lastmod` → 4 |
 | 6 | 🟡 | Sin Search Console / Bing Webmaster / analítica | requieren cuentas del cliente |
 | 7 | 🟡 | Presencia en Bing sin confirmar (ChatGPT usa Bing) | depende de que el dominio esté vivo |
-| 8 | 🟡 | Correo de leads `.mx` vs `.com.mx` sin confirmar | sitio usa `logistika.mx`; correo dado fue `hola@logistika.com.mx` |
+| 8 | ✅ | ~~Correo de leads `.mx` vs `.com.mx`~~ → confirmado **hola@logistika.mx** | cuadra con el dominio del sitio |
 
 ---
 

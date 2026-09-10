@@ -12,7 +12,7 @@
  */
 
 // === CONFIG (por entorno, con defaults) ======================================
-$LEAD_TO   = getenv('LEAD_TO')   ?: 'hola@logistika.com.mx';   // TODO(correo)
+$LEAD_TO   = getenv('LEAD_TO')   ?: 'hola@logistika.mx';       // correo destino de leads
 $LEAD_FROM = getenv('LEAD_FROM') ?: 'no-reply@logistika.mx';   // TODO(dominio)
 $ALLOWED_ORIGIN = getenv('ALLOWED_ORIGIN') ?: 'https://www.logistika.mx';
 $RATE_LIMIT_MAX = (int)(getenv('RATE_LIMIT_MAX') ?: 5);

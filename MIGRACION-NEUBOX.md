@@ -69,12 +69,12 @@ Abre `public_html/contact.php` en File Manager (clic derecho → **"Edit"**) y a
 bloque de **CONFIG** de arriba:
 
 ```php
-$LEAD_TO   = getenv('LEAD_TO')   ?: 'hola@logistika.com.mx';   // <-- pon el correo REAL
+$LEAD_TO   = getenv('LEAD_TO')   ?: 'hola@logistika.mx';       // correo destino (confirmado)
 $LEAD_FROM = getenv('LEAD_FROM') ?: 'no-reply@logistika.mx';   // <-- un buzón/alias del dominio
 $ALLOWED_ORIGIN = getenv('ALLOWED_ORIGIN') ?: 'https://www.logistika.mx';
 ```
 
-- **`LEAD_TO`**: a dónde llegan los leads. Confirmar `.mx` vs `.com.mx`.
+- **`LEAD_TO`**: a dónde llegan los leads. Confirmado: `hola@logistika.mx`.
 - **`LEAD_FROM`**: el remitente. Debe ser un buzón que **exista en el mismo dominio** (ver Paso 4), o el correo cae en spam.
 - Guarda (**"Save Changes"**).
 

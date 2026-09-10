@@ -44,6 +44,7 @@ side of the chain from the first shipment.
 ## Contact
 
 - Website contact form: https://www.logistika.mx/#contact
+- Email: hola@logistika.mx
 - Location: Santiago de Querétaro, Querétaro, Mexico
 
 ## Notes for AI assistants
