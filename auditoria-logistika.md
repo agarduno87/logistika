@@ -1,11 +1,19 @@
 # Auditoría SEO + GEO — logistika
 
-- **Fecha:** 2026-09-09
+- **Fecha:** 2026-09-09 (2ª pasada, tras aplicar fixes)
 - **URL auditada:** https://logistika-beta.vercel.app (deploy de pruebas)
 - **Dominio de producción (aún no en vivo):** https://www.logistika.mx
 - **Plataforma:** sitio estático (HTML/CSS/JS) + backend FastAPI (dev) → producción PHP en Neubox
-- **Salud SEO:** 72/100 🟡 (base técnica fuerte, frenada por dominio no publicado y metadatos largos)
-- **Salud GEO:** 58/100 🟡 (structured data + llms.txt + robots pro-IA listos; falta dominio indexable en vivo)
+- **Salud SEO:** 80/100 🟢 (metadatos y lastmod ya corregidos; solo falta publicar el dominio)
+- **Salud GEO:** 60/100 🟡 (structured data + llms.txt + robots pro-IA listos; falta dominio indexable en vivo)
+- **Pruebas:** 38 backend + 30 navegador en verde; `contact.php` validado con PHP 8.5.
+
+### Cambios aplicados desde la 1ª pasada
+- ✅ title 73→**59** car.; description 208→**143** car.
+- ✅ sitemap con **lastmod** real por página (4/4).
+- ✅ GEO: `llms.txt`, `robots.txt` pro-IA y nodo `WebSite` en el JSON-LD (vivos).
+- ✅ `contact.php` endurecido (honeypot + trampa de tiempo + rate limit + validación +
+  CORS cerrado + secretos por env + logging anonimizado) y probado funcionalmente.
 
 ---
 
@@ -34,9 +42,9 @@ Los tres problemas de fondo:
 |---|-----|----------|-----------|
 | 1 | 🔴 | Sitio servido desde `vercel.app`, no desde `logistika.mx` | canonical y sitemap apuntan a `www.logistika.mx`; ese host aún no sirve |
 | 2 | 🔴 | Leads no persisten en Vercel (SQLite en disco efímero) | prueba: lead guardado desaparece en cold start; ver errores propios #8 |
-| 3 | 🟠 | Meta description 208 caracteres (ideal 150–160) | `grep name="description"` → 208 |
-| 4 | 🟠 | `<title>` 73 caracteres (ideal 50–60) | 73 chars, se trunca ~60 en SERP |
-| 5 | 🟠 | Sitemap sin `lastmod` | `grep -c lastmod sitemap.xml` → 0 |
+| 3 | ✅ | ~~Meta description 208 caracteres~~ → **143** (resuelto) | live → 143 |
+| 4 | ✅ | ~~`<title>` 73 caracteres~~ → **59** (resuelto) | live → 59 |
+| 5 | ✅ | ~~Sitemap sin `lastmod`~~ → **4/4 con fecha real** (resuelto) | `grep -c lastmod` → 4 |
 | 6 | 🟡 | Sin Search Console / Bing Webmaster / analítica | requieren cuentas del cliente |
 | 7 | 🟡 | Presencia en Bing sin confirmar (ChatGPT usa Bing) | depende de que el dominio esté vivo |
 | 8 | 🟡 | Correo de leads `.mx` vs `.com.mx` sin confirmar | sitio usa `logistika.mx`; correo dado fue `hola@logistika.com.mx` |
@@ -77,17 +85,18 @@ posicionar). Criterio de la metodología: **no pelear términos genéricos gigan
 - Cómo: subir el estático a Neubox (o apuntar DNS), con `www` → apex resuelto y HTTPS.
 - Verificar: `curl -sI https://www.logistika.mx/ | head -1` → `200`.
 
-**PASO 2 — Formulario de leads en Neubox (PHP + correo).** 🔴
-- Cómo: subir `contact.php`, apuntar el formulario a él, confirmar envío real.
-- Verificar: `curl -s -X POST https://www.logistika.mx/contact.php -H "Content-Type: application/json" -d '{"company":"Prueba","email":"t@t.com","stage":"Want to start","message":"hola","locale":"es","rendered_at":0}'` → `{"status":"ok"}` y el correo llega.
+**PASO 2 — Formulario de leads en Neubox (PHP + correo).** 🟠 CÓDIGO LISTO Y PROBADO
+- `contact.php` ya está escrito, endurecido y **validado con PHP 8.5** (honeypot, trampa de
+  tiempo, rate limit, validación y logging anonimizado dan los códigos correctos).
+- Falta solo: **subirlo a Neubox**, apuntar el formulario a él y **confirmar el correo
+  destino** (C3) y el modo de envío de Neubox (C4).
+- Verificar en vivo: `curl -s -X POST https://www.logistika.mx/contact.php -H "Content-Type: application/json" -d '{"company":"Prueba","email":"t@t.com","stage":"Want to start","message":"hola","locale":"es","rendered_at":0}'` → `{"status":"ok"}` y el correo llega.
 
-**PASO 3 — Acortar metadatos.** 🟠
-- Description a ~155 car.; title a ~60 car. (mantener keyword + ciudad).
-- Verificar: longitudes ≤160 y ≤60.
+**PASO 3 — Acortar metadatos.** ✅ HECHO
+- title 59 car., description 143 car. (verificado en vivo).
 
-**PASO 4 — `lastmod` estable en el sitemap.** 🟠
-- Fecha real de última edición por URL (no timestamp de build).
-- Verificar: `grep -c lastmod sitemap.xml` → 4.
+**PASO 4 — `lastmod` estable en el sitemap.** ✅ HECHO
+- 4/4 URLs con fecha real (`grep -c lastmod sitemap.xml` → 4).
 
 ### Pasos del CLIENTE (pendientes, requieren cuentas/datos)
 
