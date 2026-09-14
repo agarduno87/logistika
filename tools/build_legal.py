@@ -73,8 +73,8 @@ PAGES = [
              [("The site is served over HTTPS with a strict content security policy. The contact form is rate limited and validated on the server. Credentials are held in environment variables, never in the code or in anything your browser downloads.",
                "El sitio se sirve por HTTPS con una política de seguridad de contenido estricta. El formulario tiene límite de envíos y validación en el servidor. Las credenciales viven en variables de entorno, nunca en el código ni en nada que descargue tu navegador.")]),
             ("Contact", "Contacto",
-             [("logistika, Santiago de Querétaro, Querétaro, México. For any request about your data, use the contact form or the address published on the site.",
-               "logistika, Santiago de Querétaro, Querétaro, México. Para cualquier solicitud sobre tus datos, usa el formulario de contacto o la dirección publicada en el sitio.")]),
+             [("Logistika, Santiago de Querétaro, Querétaro, México. For any request about your data, use the contact form or the address published on the site.",
+               "Logistika, Santiago de Querétaro, Querétaro, México. Para cualquier solicitud sobre tus datos, usa el formulario de contacto o la dirección publicada en el sitio.")]),
         ],
     },
     {
@@ -91,17 +91,17 @@ PAGES = [
         "deck_es": "Estos términos cubren el sitio web. No son el contrato del proyecto: ese es un documento aparte y firmado, y donde ambos difieran, gana el firmado.",
         "sections": [
             ("What this site is", "Qué es este sitio",
-             [("A description of services offered by logistika, based in Santiago de Querétaro, Querétaro, México. The content is informational and does not by itself create a client relationship or an obligation to provide any service.",
-               "Una descripción de los servicios que ofrece logistika, con base en Santiago de Querétaro, Querétaro, México. El contenido es informativo y por sí mismo no crea una relación de cliente ni obligación de prestar ningún servicio.")]),
+             [("A description of services offered by Logistika, based in Santiago de Querétaro, Querétaro, México. The content is informational and does not by itself create a client relationship or an obligation to provide any service.",
+               "Una descripción de los servicios que ofrece Logistika, con base en Santiago de Querétaro, Querétaro, México. El contenido es informativo y por sí mismo no crea una relación de cliente ni obligación de prestar ningún servicio.")]),
             ("Prices and timelines", "Precios y plazos",
              [("Any figure published here is an indicative band for designing an engagement, not a quote. Durations are typical, not guaranteed. The binding numbers are the ones in a written proposal signed by both sides.",
                "Cualquier cifra publicada aquí es una banda indicativa para diseñar un proyecto, no una cotización. Las duraciones son típicas, no garantizadas. Los números que obligan son los de una propuesta escrita y firmada por ambas partes.")]),
             ("Results and figures", "Resultados y cifras",
-             [("Any savings, lead times or indicators described on this site come from operations we measured or that the client reported. Experience gained while working for a previous employer is described as experience — never as a client relationship of logistika. Past results describe what happened in that context; they are not a prediction of what will happen in yours.",
-               "Cualquier ahorro, lead time o indicador descrito en este sitio proviene de operaciones que medimos o que el cliente reportó. La experiencia adquirida trabajando para un empleador anterior se describe como experiencia, nunca como una relación comercial de logistika. Los resultados pasados describen lo que ocurrió en ese contexto; no son una predicción de lo que ocurrirá en el tuyo.")]),
+             [("Any savings, lead times or indicators described on this site come from operations we measured or that the client reported. Experience gained while working for a previous employer is described as experience — never as a client relationship of Logistika. Past results describe what happened in that context; they are not a prediction of what will happen in yours.",
+               "Cualquier ahorro, lead time o indicador descrito en este sitio proviene de operaciones que medimos o que el cliente reportó. La experiencia adquirida trabajando para un empleador anterior se describe como experiencia, nunca como una relación comercial de Logistika. Los resultados pasados describen lo que ocurrió en ese contexto; no son una predicción de lo que ocurrirá en el tuyo.")]),
             ("Customs and regulated activity", "Aduanas y actividad regulada",
-             [("logistika is not a customs broker, a freight forwarder or a carrier. In Mexico customs clearance is legally reserved to a licensed customs broker. We coordinate, supervise and audit the broker, the forwarder and the carriers on your behalf, and we answer for the coordination — but we do not perform clearance, we do not sign entries, and we do not charge for those acts.",
-               "logistika no es agencia aduanal, ni forwarder, ni transportista. En México el despacho aduanero está legalmente reservado a un agente aduanal con patente. Coordinamos, supervisamos y auditamos al agente, al forwarder y a los transportistas en tu nombre, y respondemos por la coordinación — pero no realizamos el despacho, no firmamos pedimentos y no cobramos por esos actos."),
+             [("Logistika is not a customs broker, a freight forwarder or a carrier. In Mexico customs clearance is legally reserved to a licensed customs broker. We coordinate, supervise and audit the broker, the forwarder and the carriers on your behalf, and we answer for the coordination — but we do not perform clearance, we do not sign entries, and we do not charge for those acts.",
+               "Logistika no es agencia aduanal, ni forwarder, ni transportista. En México el despacho aduanero está legalmente reservado a un agente aduanal con patente. Coordinamos, supervisamos y auditamos al agente, al forwarder y a los transportistas en tu nombre, y respondemos por la coordinación — pero no realizamos el despacho, no firmamos pedimentos y no cobramos por esos actos."),
               ("Nothing published here constitutes customs, tax or legal advice for a specific operation. Bring us the operation and we will tell you, in writing, what applies to it and who has to sign it.",
                "Nada de lo publicado aquí constituye asesoría aduanera, fiscal o legal para una operación específica. Tráenos la operación y te decimos, por escrito, qué le aplica y quién tiene que firmarlo.")]),
             ("Intellectual property", "Propiedad intelectual",
@@ -120,7 +120,7 @@ PAGES = [
 
 def nav_html():
     return """  <div class="wrap">
-    <a class="brand" href="/"><img src="/img/logistika-logo.png" srcset="/img/logistika-logo.png 420w, /img/logistika-logo@2x.png 840w" sizes="180px" alt="logistika" width="420" height="179" decoding="async"></a>
+    <a class="brand" href="/"><img src="/img/logistika-logo.png" srcset="/img/logistika-logo.png 420w, /img/logistika-logo@2x.png 840w" sizes="180px" alt="Logistika" width="420" height="179" decoding="async"></a>
     <button class="burger" id="burger" aria-expanded="false" aria-controls="nav" aria-label="Open menu">&#9776;</button>
     <nav id="nav">
       <a href="/#journey" data-i18n="nav.journey">The journey</a>
@@ -165,7 +165,7 @@ def build(p: dict) -> str:
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>{E(p["title_en"])} | logistika</title>
+<title>{E(p["title_en"])} | Logistika</title>
 <meta name="description" content="{E(p["desc_en"])}">
 
 <!-- No CSP meta here: the authoritative policy is an HTTP header. See _headers. -->
@@ -221,7 +221,7 @@ def build(p: dict) -> str:
 
 <footer>
   <div class="wrap">
-    <div>logistika · Querétaro, México</div>
+    <div>Logistika · Querétaro, México</div>
     <span>
       <a href="/legal/privacy/" data-i18n="footer.privacy">Privacy</a> ·
       <a href="/legal/terms/" data-i18n="footer.terms">Terms</a> ·

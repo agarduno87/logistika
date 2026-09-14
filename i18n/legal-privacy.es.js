@@ -23,5 +23,5 @@ window.ttsRegisterDictionary("es", {
   "pv.s6h": "Seguridad",
   "pv.s6p1": "El sitio se sirve por HTTPS con una política de seguridad de contenido estricta. El formulario tiene límite de envíos y validación en el servidor. Las credenciales viven en variables de entorno, nunca en el código ni en nada que descargue tu navegador.",
   "pv.s7h": "Contacto",
-  "pv.s7p1": "logistika, Santiago de Querétaro, Querétaro, México. Para cualquier solicitud sobre tus datos, usa el formulario de contacto o la dirección publicada en el sitio."
+  "pv.s7p1": "Logistika, Santiago de Querétaro, Querétaro, México. Para cualquier solicitud sobre tus datos, usa el formulario de contacto o la dirección publicada en el sitio."
 });

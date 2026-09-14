@@ -97,8 +97,7 @@ def build_html():
         "mx.no": "No incluido",
         "mx.kick": "Qué incluye cada nivel",
         "mx.h": "La matriz completa, sin letras chicas.",
-        "mx.lead": "Un servicio o está dentro del nivel, o se cotiza como proyecto aparte, o no aplica. "
-                   "No hay una cuarta categoría, y esta tabla es la misma que va en la propuesta.",
+        "mx.lead": "¡Todos los servicios los encuentras dentro de algún nivel!",
         "mx.service": "Servicio",
         "mx.price": "Precio",
         "mx.onrequest": "A cotizar",
@@ -124,7 +123,7 @@ def build_html():
     <div class="head">
       <p class="kick" data-i18n="mx.kick">What each level includes</p>
       <h2 class="t" data-i18n="mx.h">The full matrix, no small print.</h2>
-      <p data-i18n="mx.lead">A service is either inside the level, quoted as a separate project, or not part of it. There is no fourth category, and this is the same table that goes in the proposal.</p>
+      <p data-i18n="mx.lead">You'll find every service inside one of the levels.</p>
     </div>
     <div class="mxwrap">
       <table class="mx">

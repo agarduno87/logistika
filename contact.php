@@ -1,6 +1,6 @@
 <?php
 /**
- * logistika — recepción de leads por correo (Neubox / cPanel, sin base de datos).
+ * Logistika — recepción de leads por correo (Neubox / cPanel, sin base de datos).
  * Reemplaza al backend FastAPI en producción, con la MISMA defensa en profundidad:
  *   honeypot + trampa de tiempo + rate limit + validación + CORS cerrado
  *   + secretos por entorno + logging anonimizado (sin cuerpo, sin correo completo).
@@ -18,7 +18,7 @@ $ALLOWED_ORIGIN = getenv('ALLOWED_ORIGIN') ?: 'https://www.logistika.mx';
 $RATE_LIMIT_MAX = (int)(getenv('RATE_LIMIT_MAX') ?: 5);
 $RATE_LIMIT_WINDOW = (int)(getenv('RATE_LIMIT_WINDOW_SECONDS') ?: 3600);
 
-$SITE_NAME       = 'logistika';
+$SITE_NAME       = 'Logistika';
 $MIN_FILL_SECONDS = 3;
 $MAX_BODY_BYTES   = 16 * 1024;
 $ALLOWED_STAGES   = ['Already importing','Want to start','Specific problem','Outsource'];
@@ -54,7 +54,7 @@ function anonymise(string $ip): string {
     $p = explode('.', $ip);                      // IPv4 -> sin último octeto
     return count($p) === 4 ? "{$p[0]}.{$p[1]}.{$p[2]}.0" : 'unknown';
 }
-function lead_log(string $msg): void { error_log("[logistika] {$msg}"); }
+function lead_log(string $msg): void { error_log("[Logistika] {$msg}"); }
 
 $ip = client_ip();
 $anon = anonymise($ip);

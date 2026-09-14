@@ -46,9 +46,14 @@ OUT = ROOT / "docs"
 # Nada de esto se publica: es codigo, originales de marca o secretos.
 BLOCKED_DIRS = {"api", "tools", "tests", "assets", "docs", ".git", ".venv",
                 "venv", "__pycache__", ".pytest_cache", "node_modules"}
-BLOCKED_SUFFIX = {".py", ".sh", ".db", ".sqlite3", ".pyc", ".env", ".zip", ".xlsx"}
+BLOCKED_SUFFIX = {".py", ".sh", ".db", ".sqlite3", ".pyc", ".env", ".zip", ".xlsx", ".php"}
 BLOCKED_NAMES = {".env", ".env.example", ".gitignore", ".DS_Store", "_headers",
-                 "README.md", "INSTALAR.md", "PRUEBAS.md", "vercel.json", ".vercelignore"}
+                 "README.md", "INSTALAR.md", "PRUEBAS.md", "vercel.json", ".vercelignore",
+                 # documentos internos: no se publican en Pages
+                 "GITHUB-PAGES.md", "MIGRACION-NEUBOX.md", "auditoria-logistika.md",
+                 "requirements.txt",
+                 "contenido-portada.md", "contenido-about.md",
+                 "contenido-privacidad.md", "contenido-terminos.md"}
 
 FORM_SHIM = """/* GitHub Pages no tiene backend: el formulario se envia por correo.
    Esto lo inyecta tools/build_pages.py y NO existe en la version de servidor. */

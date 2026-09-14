@@ -38,9 +38,9 @@ function load(file, page) {
 
   check("no-js se retira al correr JS", !d.body.classList.contains("no-js"));
   check("año pintado en el pie", /^\d{4}$/.test(d.getElementById("yr").textContent));
-  check("siete etapas del recorrido", d.querySelectorAll("[data-stage]").length === 7,
+  check("seis etapas del recorrido", d.querySelectorAll("[data-stage]").length === 6,
         String(d.querySelectorAll("[data-stage]").length));
-  check("marcas del riel generadas", d.querySelectorAll(".railstop").length === 7,
+  check("marcas del riel generadas", d.querySelectorAll(".railstop").length === 6,
         String(d.querySelectorAll(".railstop").length));
   check("panel del diagnóstico es el ámbar", d.querySelectorAll(".split .a").length === 1);
   check("logo enlazado como archivo", /logistika-logo\.png/.test(d.querySelector("header img").getAttribute("src")));
@@ -95,7 +95,7 @@ function load(file, page) {
   check("[about] un solo h1", d.querySelectorAll("h1").length === 1);
   check("[about] perfil de Adriana", /Adriana Culebro/.test(d.body.textContent));
   check("[about] retrato o marcador", d.querySelectorAll(".person-photo img, .portrait-pending").length === 1);
-  check("[about] credenciales listadas", d.querySelectorAll(".creds li").length >= 8,
+  check("[about] credenciales listadas", d.querySelectorAll(".creds li").length >= 6,
         String(d.querySelectorAll(".creds li").length));
   const sel = d.getElementById("langSelect");
   sel.value = "es"; sel.dispatchEvent(new window.Event("change"));

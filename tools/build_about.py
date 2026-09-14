@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Genera la página About (/about/) de logistika.
+Genera la página About (/about/) de Logistika.
 
 Uso:
     python3 tools/build_about.py
@@ -20,9 +20,9 @@ por una foto que todavía no llegó.
 SOBRE LO QUE SE PUEDE Y NO SE PUEDE DECIR
 -----------------------------------------
 La biografía describe la trayectoria de Adriana sin presentar como clientes de
-logistika a empresas que fueron clientes de sus EMPLEADORES. La cuenta de la
+Logistika a empresas que fueron clientes de sus EMPLEADORES. La cuenta de la
 automotriz alemana se coordinó siendo empleada de un operador logístico global;
-eso es experiencia, no una referencia comercial de logistika, y así está escrito.
+eso es experiencia, no una referencia comercial de Logistika, y así está escrito.
 Si algún día hay autorización por escrito para nombrarlas, se cambia aquí.
 """
 
@@ -39,17 +39,17 @@ E = html.escape
 PORTRAIT_SLUG = "adriana-culebro"
 
 BIO_EN = [
-    "logistika is led by Adriana Culebro Jiménez, a specialist in international logistics and foreign trade with more than fifteen years inside the operation — not around it. She holds a degree in Foreign Trade and Customs from Universidad Iberoamericana Puebla and a master's in Logistics and International Trade from Universidad Anáhuac in Mexico City, both licensed.",
+    "Logistika is led by Adriana Culebro Jiménez, a specialist in international logistics and foreign trade with more than fifteen years inside the operation — not around it. She holds a degree in Foreign Trade and Customs from Universidad Iberoamericana Puebla and a master's in Logistics and International Trade from Universidad Anáhuac in Mexico City, both licensed.",
     "Her track record is operational before it is advisory. She ran the in-house logistics account for a German automotive manufacturer at a global freight forwarder, coordinating air, ocean and ground shipments into plants in San Luis Potosí, Aguascalientes and Toluca, and reporting the indicators the account renewal depended on. Before that she analysed operations with suppliers across Europe, Asia and India — which is where you learn that a lead time quoted in a spreadsheet and a lead time that survives a customs inspection are two different numbers.",
     "Today she directs administration, logistics and foreign trade for a consultancy operating out of three offices, and has led complex industrial projects including the transfer and installation of metal structures — the kind of work where the schedule, the permits and the crane all have to agree with each other.",
-    "That is the background logistika sells. Supply chain savings are not theoretical: they live in knowing which charge is negotiable, which document always jams, and which week of the month is the wrong one to ship.",
+    "That is the background Logistika sells. Supply chain savings are not theoretical: they live in knowing which charge is negotiable, which document always jams, and which week of the month is the wrong one to ship.",
 ]
 
 BIO_ES = [
-    "logistika la dirige Adriana Culebro Jiménez, especialista en logística internacional y comercio exterior con más de quince años dentro de la operación, no alrededor de ella. Es licenciada en Comercio Exterior y Aduanas por la Universidad Iberoamericana Puebla y maestra en Logística y Comercio Internacional por la Universidad Anáhuac en la Ciudad de México, ambas con cédula profesional.",
+    "Logistika la dirige Adriana Culebro Jiménez, especialista en logística internacional y comercio exterior con más de quince años dentro de la operación, no alrededor de ella. Es licenciada en Comercio Exterior y Aduanas por la Universidad Iberoamericana Puebla y maestra en Logística y Comercio Internacional por la Universidad Anáhuac en la Ciudad de México, ambas con cédula profesional.",
     "Su trayectoria es operativa antes que consultiva. Llevó in-house la cuenta logística de una armadora automotriz alemana dentro de un operador logístico global, coordinando embarques aéreos, marítimos y terrestres hacia plantas en San Luis Potosí, Aguascalientes y Toluca, y reportando los indicadores de los que dependía la renovación de la cuenta. Antes de eso analizó operaciones con proveedores de Europa, Asia e India, que es donde se aprende que un lead time cotizado en una hoja de cálculo y un lead time que sobrevive a un reconocimiento aduanero son dos números distintos.",
     "Hoy dirige la administración, la logística y el comercio exterior de una consultoría que opera desde tres oficinas, y ha liderado proyectos industriales complejos, incluido el traslado e instalación de estructura metálica: ese tipo de trabajo donde el cronograma, los permisos y la grúa tienen que ponerse de acuerdo.",
-    "Ese es el respaldo que vende logistika. Los ahorros de una cadena de suministro no están en la teoría: están en saber qué cargo es negociable, qué documento siempre se atora y en qué semana del mes no conviene embarcar.",
+    "Ese es el respaldo que vende Logistika. Los ahorros de una cadena de suministro no están en la teoría: están en saber qué cargo es negociable, qué documento siempre se atora y en qué semana del mes no conviene embarcar.",
 ]
 
 CREDS = [
@@ -68,18 +68,12 @@ CREDS = [
     ("Suppliers", "Proveedores",
      "Coordination with global suppliers across Europe, Asia and India",
      "Coordinación con proveedores globales en Europa, Asia e India"),
-    ("Leadership", "Dirección",
-     "Administration, logistics and foreign trade across three offices",
-     "Administración, logística y comercio exterior en tres oficinas"),
     ("Projects", "Proyectos",
      "Transfer and installation of metal structures; industrial project supply",
      "Traslado e instalación de estructura metálica; suministro para proyectos industriales"),
     ("Systems", "Sistemas",
      "SAP · advanced spreadsheets · KPI reporting",
      "SAP · hojas de cálculo avanzadas · reporte de indicadores"),
-    ("Languages", "Idiomas",
-     "Spanish native · English · valid US visa",
-     "Español nativo · inglés · visa estadounidense vigente"),
 ]
 
 FOCUS = [
@@ -95,8 +89,8 @@ PRINCIPLES = [
      "Every engagement states what is included, what is excluded and what you receive. The exclusions are published so the first call is about your operation instead of about ours.",
      "Cada proyecto declara qué incluye, qué excluye y qué recibes. Las exclusiones están publicadas para que la primera llamada sea sobre tu operación y no sobre la nuestra."),
     ("We coordinate, we do not replace", "Coordinamos, no sustituimos",
-     "logistika is not a customs broker, a forwarder or a carrier. That independence is what lets us select, compare and audit yours on your behalf instead of defending our own yard.",
-     "logistika no es agencia aduanal, ni forwarder, ni transportista. Esa independencia es lo que nos permite elegir, comparar y auditar a los tuyos en tu nombre, en vez de defender nuestro propio patio."),
+     "Logistika is not a customs broker, a forwarder or a carrier. That independence is what lets us select, compare and audit yours on your behalf instead of defending our own yard.",
+     "Logistika no es agencia aduanal, ni forwarder, ni transportista. Esa independencia es lo que nos permite elegir, comparar y auditar a los tuyos en tu nombre, en vez de defender nuestro propio patio."),
     ("You keep the report", "El reporte es tuyo",
      "Findings, roadmaps and procedures are written so another provider could execute them. A supplier who makes you dependent has solved their problem, not yours.",
      "Los hallazgos, las hojas de ruta y los procedimientos se escriben para que otro proveedor pueda ejecutarlos. Un proveedor que te vuelve dependiente resolvió su problema, no el tuyo."),
@@ -105,7 +99,7 @@ PRINCIPLES = [
 
 def nav_html(cta="#contact"):
     return f"""  <div class="wrap">
-    <a class="brand" href="/"><img src="/img/logistika-logo.png" srcset="/img/logistika-logo.png 420w, /img/logistika-logo@2x.png 840w" sizes="180px" alt="logistika" width="420" height="179" decoding="async"></a>
+    <a class="brand" href="/"><img src="/img/logistika-logo.png" srcset="/img/logistika-logo.png 420w, /img/logistika-logo@2x.png 840w" sizes="180px" alt="Logistika" width="420" height="179" decoding="async"></a>
     <button class="burger" id="burger" aria-expanded="false" aria-controls="nav" aria-label="Open menu">☰</button>
     <nav id="nav">
       <a href="/#journey" data-i18n="nav.journey">The journey</a>
@@ -172,7 +166,7 @@ def build() -> str:
         "@context": "https://schema.org",
         "@graph": [
             {"@type": "AboutPage", "@id": DOMAIN + "/about/", "url": DOMAIN + "/about/",
-             "name": "Who we are — logistika"},
+             "name": "Who we are — Logistika"},
             {"@type": "Person", "@id": DOMAIN + "/about/#adriana",
              "name": "Adriana Culebro Jiménez",
              "jobTitle": "Director, Foreign Trade and Logistics",
@@ -195,8 +189,8 @@ def build() -> str:
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Who We Are: Adriana Culebro Jim&#233;nez | logistika &#8212; Quer&#233;taro, M&#233;xico</title>
-<meta name="description" content="logistika is led by Adriana Culebro Jim&#233;nez, a specialist in international logistics and foreign trade with 15+ years in multimodal operations, automotive accounts and complex industrial projects.">
+<title>Who We Are: Adriana Culebro Jim&#233;nez | Logistika &#8212; Quer&#233;taro, M&#233;xico</title>
+<meta name="description" content="Logistika is led by Adriana Culebro Jim&#233;nez, a specialist in international logistics and foreign trade with 15+ years in multimodal operations, automotive accounts and complex industrial projects.">
 
 <!-- No CSP meta here: the authoritative policy is an HTTP header. See _headers. -->
 <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -214,7 +208,7 @@ def build() -> str:
 <link rel="alternate" hreflang="es" href="{DOMAIN}/es/nosotros/">
 <link rel="alternate" hreflang="x-default" href="{DOMAIN}/about/">
 <meta property="og:type" content="profile">
-<meta property="og:title" content="Who we are &#8212; logistika">
+<meta property="og:title" content="Who we are &#8212; Logistika">
 <meta property="og:description" content="Fifteen years inside the operation, not around it.">
 <meta property="og:url" content="{DOMAIN}/about/">
 <meta property="og:image" content="{DOMAIN}/og/about.png">
@@ -243,7 +237,7 @@ def build() -> str:
       <p class="lead" data-i18n="ab.deck">Most consultancies sell you a partner and staff the project with someone else. This page exists so you know exactly who takes your operation: one specialist, named, with the licences and the shipments behind her.</p>
       <div class="btns">
         <a class="btn btn-p" href="#contact" data-i18n="ab.cta1">Request an assessment</a>
-        <a class="btn btn-s" href="/#journey" data-i18n="ab.cta2">See the seven stages</a>
+        <a class="btn btn-s" href="/#journey" data-i18n="ab.cta2">See the six stages</a>
       </div>
     </div>
     <div class="preview">
@@ -309,7 +303,7 @@ def build() -> str:
 
 <footer>
   <div class="wrap">
-    <img src="/img/logistika-logo-white.png" alt="logistika" width="360" height="193" loading="lazy" decoding="async">
+    <img src="/img/logistika-logo-white.png" alt="Logistika" width="360" height="193" loading="lazy" decoding="async">
     <span>
       <a href="/legal/privacy/" data-i18n="footer.privacy">Privacy</a> &#183;
       <a href="/legal/terms/" data-i18n="footer.terms">Terms</a> &#183;
@@ -335,7 +329,7 @@ def build_dict() -> str:
         "ab.kick": "Quién hace el trabajo",
         "ab.h1a": "Quince años", "ab.h1b": "dentro de la operación.",
         "ab.deck": "Casi toda consultoría te vende un socio y luego asigna el proyecto a alguien más. Esta página existe para que sepas exactamente quién toma tu operación: una especialista, con nombre, con las cédulas y los embarques que lo respaldan.",
-        "ab.cta1": "Solicitar diagnóstico", "ab.cta2": "Ver las siete etapas",
+        "ab.cta1": "Solicitar diagnóstico", "ab.cta2": "Ver las seis etapas",
         "ab.cardHead": "El estudio",
         "ab.k1": "Con base en", "ab.v1": "Querétaro, México",
         "ab.k2": "Idiomas de trabajo",
