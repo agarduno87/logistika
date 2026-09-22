@@ -52,6 +52,7 @@
   .metagrid{display:grid; grid-template-columns:auto auto; gap:3px 12px; justify-content:end}
   .metagrid dt{font-family:var(--mono); font-size:9.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-2); text-align:right; align-self:center}
   .metagrid dd{margin:0; text-align:right}
+  .metagrid dd .f{width:260px; max-width:100%}
 
   /* Bandas De / Para */
   .parties{display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-top:26px}
