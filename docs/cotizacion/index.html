@@ -1,0 +1,458 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Cotización — Logistika</title>
+<style>
+  :root{
+    color-scheme: light;
+    --paper:#FFFFFF; --ground:#EEF1F8; --ink:#18203A; --ink-2:#5A6684;
+    --line:#E1E6F2; --line-2:#EBF0F7;
+    --blue:#385DAB; --blue-dk:#27407A; --blue-soft:#EAF0FB; --peri:#8292CA;
+    --amber:#F6B334; --amber-dk:#8A5E08; --navy:#141B31; --danger:#C0453B;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    --mono:ui-monospace,"SFMono-Regular",Menlo,Consolas,"Liberation Mono",monospace;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{background:var(--ground); color:var(--ink); font-family:var(--sans);
+    line-height:1.6; -webkit-font-smoothing:antialiased; font-size:14px; padding-block:0 40px;}
+
+  /* Barra de herramientas (no se imprime) */
+  .toolbar{position:sticky; top:0; z-index:20; background:var(--navy); color:#EAF1F4;
+    display:flex; flex-wrap:wrap; align-items:center; gap:14px 18px; padding:12px clamp(16px,4vw,28px);
+    border-bottom:1px solid #22304F;}
+  .toolbar .brand{display:flex; align-items:center; gap:9px; font-weight:700; font-size:16px; letter-spacing:-.02em; margin-right:auto}
+  .toolbar .brand svg{width:26px; height:26px; flex:none}
+  .tgroup{display:flex; align-items:center; gap:8px; font-size:12px}
+  .tgroup .lbl{font-family:var(--mono); font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; color:#9FB0C6}
+  .seg{display:inline-flex; border:1px solid #33436B; border-radius:8px; overflow:hidden}
+  .seg button{background:transparent; color:#C3CEE0; border:0; font-family:var(--mono); font-size:12px; padding:6px 12px; cursor:pointer}
+  .seg button[aria-pressed="true"]{background:var(--amber); color:#3A2A05; font-weight:600}
+  .chk{display:inline-flex; align-items:center; gap:7px; cursor:pointer; user-select:none}
+  .chk input{accent-color:var(--amber); width:15px; height:15px}
+  .btn{font-family:var(--sans); font-weight:600; font-size:12.5px; border-radius:8px; padding:8px 15px; cursor:pointer; border:1px solid transparent}
+  .btn-print{background:var(--amber); color:#3A2A05}
+  .btn-print:hover{background:#E4A421}
+  .btn-ghost{background:transparent; color:#C3CEE0; border-color:#33436B}
+  .btn-ghost:hover{border-color:#4a5f92; color:#EAF1F4}
+
+  /* Hoja */
+  .sheet-wrap{max-width:860px; margin:26px auto 0; padding-inline:clamp(12px,4vw,20px)}
+  .hint{font-family:var(--mono); font-size:11px; color:var(--ink-2);
+    background:var(--blue-soft); border:1px solid #D3E0F5; border-radius:8px;
+    padding:9px 13px; margin-bottom:16px; display:flex; gap:8px; align-items:center;}
+  .hint b{color:var(--blue-dk)}
+  .sheet{position:relative; overflow:hidden; background:var(--paper); border:1px solid var(--line); border-radius:4px;
+    box-shadow:0 1px 0 rgba(24,32,58,.04), 0 24px 60px -30px rgba(24,32,58,.32); padding:clamp(26px,5vw,52px);}
+  .watermark{position:absolute; right:-56px; top:340px; width:300px; opacity:.04; pointer-events:none; z-index:0}
+  .sheet > *{position:relative; z-index:1}
+
+  /* Masthead */
+  .masthead{display:flex; justify-content:space-between; gap:24px; flex-wrap:wrap; align-items:flex-start; padding-bottom:22px; border-bottom:2px solid var(--ink)}
+  .id{display:flex; flex-direction:column; gap:8px}
+  .id img{height:40px; width:auto; display:block}
+  .id .tag{font-family:var(--mono); font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--blue-dk)}
+  .docmeta{text-align:right; min-width:210px}
+  .docmeta .doctitle{font-weight:700; font-size:23px; letter-spacing:.02em; text-transform:uppercase; color:var(--ink)}
+  .metagrid{margin-top:10px; display:grid; grid-template-columns:auto auto; gap:3px 12px; justify-content:end}
+  .metagrid dt{font-family:var(--mono); font-size:9.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-2); text-align:right; align-self:center}
+  .metagrid dd{margin:0; text-align:right}
+
+  /* Bandas De / Para */
+  .parties{display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-top:26px}
+  .party .cap{font-family:var(--mono); font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--blue-dk); padding-bottom:6px; margin-bottom:10px; border-bottom:1px solid var(--line)}
+  .party .line{font-size:13px; color:var(--ink-2)}
+  .party .line.strong{color:var(--ink); font-weight:600; font-size:14.5px}
+
+  /* Campos editables */
+  .f{font:inherit; color:inherit; background:transparent; border:0; padding:1px 2px; border-radius:3px; width:100%;}
+  .f:hover{background:var(--line-2)}
+  .f:focus{outline:0; background:#fff; box-shadow:0 0 0 1px var(--blue)}
+  .f.r{text-align:right}
+  textarea.f{resize:vertical; min-height:1.6em; line-height:1.45; overflow:hidden}
+  input[type=number].f{-moz-appearance:textfield}
+  input[type=number].f::-webkit-outer-spin-button,input[type=number].f::-webkit-inner-spin-button{-webkit-appearance:none; margin:0}
+
+  /* Tabla de conceptos */
+  .tablebox{margin-top:28px; overflow-x:auto}
+  table{width:100%; border-collapse:collapse; min-width:560px}
+  thead th{font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:#fff; background:var(--ink); padding:9px 11px; text-align:left; font-weight:500}
+  thead th.num{text-align:right}
+  tbody td{border-bottom:1px solid var(--line); padding:10px 11px; vertical-align:top; font-size:13px}
+  tbody tr:nth-child(even) td{background:rgba(24,32,58,.015)}
+  .c-concepto{width:38%}
+  .c-num{width:12%}
+  .concepto-t{font-weight:600; color:var(--ink)}
+  .importe{font-family:var(--mono); text-align:right; white-space:nowrap; font-variant-numeric:tabular-nums}
+  .cell-num .f{text-align:right; font-family:var(--mono); font-variant-numeric:tabular-nums}
+  .rowdel{border:0; background:transparent; color:#AEB8CE; cursor:pointer; font-size:16px; line-height:1; padding:2px 4px; border-radius:4px}
+  .rowdel:hover{color:var(--danger); background:#FBEEEC}
+  .delcell{width:26px; padding-left:0; padding-right:6px; text-align:center}
+
+  .tablefoot{display:flex; flex-wrap:wrap; gap:24px; justify-content:space-between; margin-top:14px}
+  .addbar{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
+  .addbtn{font-family:var(--sans); font-weight:600; font-size:12.5px; color:var(--blue-dk); background:var(--blue-soft); border:1px solid #D3E0F5; border-radius:8px; padding:8px 14px; cursor:pointer}
+  .addbtn:hover{background:#DEE9FA}
+  select.catalog{font-family:var(--sans); font-size:12.5px; padding:8px 12px; border:1px solid var(--line); border-radius:8px; background:#fff; color:var(--ink); cursor:pointer}
+
+  /* Totales */
+  .totals{margin-left:auto; width:min(340px,100%)}
+  .totrow{display:flex; justify-content:space-between; align-items:center; padding:7px 0; font-size:13.5px; color:var(--ink-2); border-bottom:1px solid var(--line-2)}
+  .totrow .k{font-family:var(--mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase}
+  .totrow .v{font-family:var(--mono); font-variant-numeric:tabular-nums; color:var(--ink)}
+  .totrow input.f{width:120px}
+  .totrow.grand{margin-top:8px; padding:14px 16px; background:var(--blue); color:#fff; border-radius:10px; border:0}
+  .totrow.grand .k{color:var(--amber); font-size:12px}
+  .totrow.grand .v{font-weight:700; font-size:26px; color:#fff; letter-spacing:-.02em}
+  .totrow.grand .cur{font-family:var(--mono); font-size:11px; color:var(--amber); margin-left:7px; letter-spacing:.1em}
+
+  /* Notas / pie */
+  .notes{margin-top:30px; display:grid; grid-template-columns:1.4fr 1fr; gap:26px}
+  .block .cap{font-family:var(--mono); font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--blue-dk); margin-bottom:9px}
+  .notes textarea.f{font-size:12.5px; color:var(--ink-2); line-height:1.55}
+  .terms{list-style:none; margin:0; padding:0; font-size:12px; color:var(--ink-2)}
+  .terms li{padding:5px 0 5px 16px; position:relative; border-bottom:1px dotted var(--line)}
+  .terms li::before{content:"—"; position:absolute; left:0; color:var(--amber-dk)}
+
+  .signoff{margin-top:34px; display:grid; grid-template-columns:1fr 1fr; gap:26px; align-items:end}
+  .sig .rule{border-top:1px solid var(--ink); padding-top:7px; font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-2)}
+
+  .footer{margin-top:30px; padding-top:16px; border-top:2px solid var(--ink); display:flex; flex-wrap:wrap; gap:6px 20px; justify-content:space-between; font-family:var(--mono); font-size:10.5px; letter-spacing:.05em; color:var(--ink-2)}
+  .footer a{color:var(--blue-dk); text-decoration:none}
+  .footer .stamp{color:var(--ink)}
+
+  @media (max-width:640px){
+    .parties,.notes,.signoff{grid-template-columns:1fr}
+    .docmeta{text-align:left; min-width:0}
+    .metagrid{justify-content:start}
+    .metagrid dt,.metagrid dd{text-align:left}
+  }
+
+  @media print{
+    @page{size:letter; margin:14mm}
+    body{background:#fff; padding:0}
+    .toolbar,.hint,.addbar,.rowdel,.delcell{display:none !important}
+    .sheet-wrap{max-width:none; margin:0; padding:0}
+    .sheet{border:0; border-radius:0; box-shadow:none; padding:0}
+    .watermark{opacity:.045}
+    .f:hover,.f:focus{background:transparent; box-shadow:none}
+    tbody tr:nth-child(even) td{background:transparent}
+    .totrow.grand{-webkit-print-color-adjust:exact; print-color-adjust:exact}
+    thead th{-webkit-print-color-adjust:exact; print-color-adjust:exact}
+    table{min-width:0}
+  }
+</style>
+</head>
+<body>
+<div class="toolbar">
+  <span class="brand"><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="12" fill="#385DAB"/><path d="M22 14 v26 a4 4 0 0 0 4 4 h20" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="17" cy="47" r="4" fill="#F6B334"/><circle cx="34" cy="51" r="4" fill="#F6B334"/></svg> Logistika</span>
+  <span class="tgroup"><span class="lbl">Moneda</span>
+    <span class="seg" id="curseg"><button data-cur="MXN" aria-pressed="true">MXN</button><button data-cur="USD" aria-pressed="false">USD</button></span>
+  </span>
+  <label class="chk"><input type="checkbox" id="ivachk" checked><span class="lbl">IVA 16%</span></label>
+  <button class="btn btn-ghost" id="resetbtn">Reiniciar</button>
+  <button class="btn btn-print" id="printbtn">Imprimir / PDF</button>
+</div>
+
+<div class="sheet-wrap">
+  <div class="hint"><b>Plantilla editable.</b><span>Haz clic en cualquier dato para editarlo. Se guarda solo en este navegador. Al imprimir se limpia todo lo gris.</span></div>
+
+  <div class="sheet" id="sheet">
+    <div class="watermark"><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="12" fill="#385DAB"/><path d="M22 14 v26 a4 4 0 0 0 4 4 h20" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="17" cy="47" r="4" fill="#F6B334"/><circle cx="34" cy="51" r="4" fill="#F6B334"/></svg></div>
+
+    <header class="masthead">
+      <div class="id">
+        <img src="data:image/png;base64,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" alt="Logistika" width="94" height="40">
+        <div class="tag">Comercio exterior y logística · Querétaro, MX</div>
+      </div>
+      <div class="docmeta">
+        <div class="doctitle">Cotización</div>
+        <dl class="metagrid">
+          <dt>Folio</dt><dd><input class="f r" id="folio"></dd>
+          <dt>Fecha</dt><dd><input class="f r" id="fecha"></dd>
+          <dt>Vigencia</dt><dd><input class="f r" id="vigencia"></dd>
+        </dl>
+      </div>
+    </header>
+
+    <section class="parties">
+      <div class="party">
+        <div class="cap">Emitido por</div>
+        <div class="line strong">Logistika</div>
+        <div class="line"><input class="f" id="em_razon" placeholder="Razón social (por definir)"></div>
+        <div class="line"><input class="f" id="em_rfc" placeholder="RFC (por definir)"></div>
+        <div class="line">Santiago de Querétaro, Querétaro, México</div>
+        <div class="line">hola@logistika.mx</div>
+        <div class="line">www.logistika.mx · +52 442 608 4290</div>
+      </div>
+      <div class="party">
+        <div class="cap">Preparado para</div>
+        <div class="line strong"><input class="f" id="cl_empresa"></div>
+        <div class="line"><input class="f" id="cl_contacto"></div>
+        <div class="line"><input class="f" id="cl_correo"></div>
+        <div class="line"><input class="f" id="cl_telefono"></div>
+        <div class="line"><input class="f" id="cl_direccion"></div>
+      </div>
+    </section>
+
+    <div class="tablebox">
+      <table>
+        <thead>
+          <tr>
+            <th class="delcell" aria-hidden="true"></th>
+            <th class="c-concepto">Concepto</th>
+            <th class="c-num num">Cant.</th>
+            <th class="c-num num">P. unitario</th>
+            <th class="c-num num">Importe</th>
+          </tr>
+        </thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+
+    <div class="tablefoot">
+      <div class="addbar">
+        <button class="addbtn" id="addrow">+ Agregar concepto</button>
+        <select class="catalog" id="catalog" aria-label="Insertar servicio del catálogo">
+          <option value="">Insertar del catálogo…</option>
+          <option value="start">Start — Consultoría y plan de importación/exportación</option>
+          <option value="manage">Manage — Gestión de comercio exterior (punta a punta)</option>
+          <option value="partner">Partner — Departamento externo de comercio exterior</option>
+          <option value="healthcheck">Supply Chain Health Check (diagnóstico)</option>
+          <option value="import">Gestión de importaciones</option>
+          <option value="optimization">Optimización de cadena de suministro</option>
+          <option value="controltower">Torre de control logística</option>
+          <option value="project">Logística de proyectos</option>
+          <option value="interim">Gerencia interina de logística</option>
+        </select>
+      </div>
+
+      <div class="totals">
+        <div class="totrow"><span class="k">Subtotal</span><span class="v" id="t_sub">—</span></div>
+        <div class="totrow"><span class="k">Descuento</span><span class="v"><input class="f r" type="number" id="descuento" min="0" step="100" value="0"></span></div>
+        <div class="totrow" id="ivarow"><span class="k">IVA 16%</span><span class="v" id="t_iva">—</span></div>
+        <div class="totrow grand"><span class="k">Total</span><span><span class="v" id="t_total">—</span><span class="cur" id="t_cur">MXN</span></span></div>
+      </div>
+    </div>
+
+    <section class="notes">
+      <div class="block">
+        <div class="cap">Notas</div>
+        <textarea class="f" id="notas" rows="4"></textarea>
+      </div>
+      <div class="block">
+        <div class="cap">Condiciones</div>
+        <ul class="terms">
+          <li>Precios en la moneda indicada; el monto exacto sale del diagnóstico y del alcance acordado.</li>
+          <li>Alcance acotado por escrito antes de arrancar.</li>
+          <li>logistika coordina, supervisa y audita; no realiza el despacho aduanero (reservado por ley al agente aduanal con patente) ni cobra por ese acto.</li>
+          <li>El reporte, las hojas de ruta y los procedimientos son del cliente.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="signoff">
+      <div class="sig"><div class="rule">Aceptación del cliente · Nombre y firma</div></div>
+      <div class="sig"><div class="rule">Por Logistika · Adriana Culebro Jiménez</div></div>
+    </section>
+
+    <footer class="footer">
+      <span class="stamp">Logistika</span>
+      <span><a href="https://www.logistika.mx">www.logistika.mx</a> · Santiago de Querétaro, México</span>
+      <span>Gracias por tu confianza.</span>
+    </footer>
+  </div>
+</div>
+
+<script>
+"use strict";
+var KEY = "logistika-cotizacion-v1";
+
+var CATALOG = {
+  start:        {concepto:"Start — Consultoría y plan de importación/exportación", descripcion:"Análisis de producto, proveedor y origen; impuestos y estimación de costo total en destino; Incoterm, régimen y ruta; expediente de viabilidad que te quedas.", cantidad:1, mxn:0, usd:0, unidad:"proyecto"},
+  manage:       {concepto:"Manage — Gestión de comercio exterior (punta a punta)", descripcion:"Cada embarque coordinado: recepción de OC y seguimiento al proveedor, revisión documental, forwarder y transporte, despacho y liberación, entrega en planta y cierre con indicadores.", cantidad:1, mxn:0, usd:0, unidad:"mes"},
+  partner:      {concepto:"Partner — Departamento externo de comercio exterior", descripcion:"Todo lo de Manage + acompañamiento en trámites y registros, gestión de proveedores, definición y seguimiento de KPIs, y control de costos con propuestas de mejora.", cantidad:1, mxn:0, usd:0, unidad:"mes"},
+  healthcheck:  {concepto:"Supply Chain Health Check", descripcion:"Diagnóstico de 10–15 días: los problemas principales ordenados por impacto, costo estimado de cada uno, riesgos de cumplimiento, acciones para 30 días y hoja de ruta a 90. El reporte es tuyo.", cantidad:1, mxn:0, usd:0, unidad:"paquete"},
+  import:       {concepto:"Gestión de importaciones", descripcion:"Coordinación de cada embarque del proveedor a tu bodega, con expediente cerrado e indicadores por operación.", cantidad:1, mxn:0, usd:0, unidad:"mes"},
+  optimization: {concepto:"Optimización de cadena de suministro", descripcion:"Búsqueda de fugas de costo: compras, lead times, inventarios, rutas, aduanas, almacén y última milla.", cantidad:1, mxn:0, usd:0, unidad:"proyecto"},
+  controltower: {concepto:"Torre de control logística", descripcion:"Monitoreo de embarques, ETA, retrasos, incidencias, OTIF y costo. Un solo punto de contacto.", cantidad:1, mxn:0, usd:0, unidad:"mes"},
+  project:      {concepto:"Logística de proyectos", descripcion:"Suministro, importación, transporte especializado, cronograma e instalación para todo tipo de proyectos.", cantidad:1, mxn:0, usd:0, unidad:"proyecto"},
+  interim:      {concepto:"Gerencia interina de logística", descripcion:"Sostenemos la operación entre tres y doce meses cuando se va quien la llevaba, y la entregamos ordenada.", cantidad:1, mxn:0, usd:0, unidad:"mes"}
+};
+
+var MESES = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
+function fmtDate(d){ return d.getDate() + " " + MESES[d.getMonth()] + " " + d.getFullYear(); }
+
+function defaults(){
+  var hoy = new Date();
+  var vig = new Date(hoy.getTime() + 15*86400000);
+  var yy = hoy.getFullYear();
+  return {
+    folio:"COT-" + yy + "-001",
+    fecha:fmtDate(hoy),
+    vigencia:"15 días · vence " + fmtDate(vig),
+    emisor:{razon:"", rfc:""},
+    cliente:{empresa:"Empresa Ejemplo, S.A. de C.V.", contacto:"Nombre del contacto", correo:"contacto@empresa.com", telefono:"+52 442 000 0000", direccion:"Ciudad, Estado"},
+    currency:"MXN", iva:true, descuento:0,
+    rows:[
+      {concepto:CATALOG.healthcheck.concepto, descripcion:CATALOG.healthcheck.descripcion, cantidad:1, precio:0},
+      {concepto:CATALOG.manage.concepto, descripcion:CATALOG.manage.descripcion, cantidad:1, precio:0}
+    ],
+    notas:"Cotización sujeta a diagnóstico y a confirmación de alcance. Tiempos de entrega y entregables se detallan en la propuesta. Cualquier trabajo fuera del alcance acordado se cotiza por separado. logistika no es agencia aduanal, forwarder ni transportista."
+  };
+}
+
+var state = load();
+
+function load(){
+  try{ var raw = localStorage.getItem(KEY); if(raw){ return JSON.parse(raw); } }catch(e){}
+  return defaults();
+}
+function save(){ try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){} }
+
+function locale(){ return state.currency === "MXN" ? "es-MX" : "en-US"; }
+function fmt(n){
+  n = isFinite(n) ? n : 0;
+  try{ return new Intl.NumberFormat(locale(), {style:"currency", currency:state.currency, minimumFractionDigits:2, maximumFractionDigits:2}).format(n); }
+  catch(e){ return "$" + n.toFixed(2); }
+}
+
+function $(id){ return document.getElementById(id); }
+
+function bindText(id, get, set){
+  var el = $(id); if(!el) return;
+  el.value = get() || "";
+  el.addEventListener("input", function(){ set(el.value); save(); });
+}
+function autosize(t){ t.style.height="auto"; t.style.height=(t.scrollHeight)+"px"; }
+
+function bindAll(){
+  bindText("folio", function(){return state.folio;}, function(v){state.folio=v;});
+  bindText("fecha", function(){return state.fecha;}, function(v){state.fecha=v;});
+  bindText("vigencia", function(){return state.vigencia;}, function(v){state.vigencia=v;});
+  bindText("em_razon", function(){return state.emisor.razon;}, function(v){state.emisor.razon=v;});
+  bindText("em_rfc", function(){return state.emisor.rfc;}, function(v){state.emisor.rfc=v;});
+  bindText("cl_empresa", function(){return state.cliente.empresa;}, function(v){state.cliente.empresa=v;});
+  bindText("cl_contacto", function(){return state.cliente.contacto;}, function(v){state.cliente.contacto=v;});
+  bindText("cl_correo", function(){return state.cliente.correo;}, function(v){state.cliente.correo=v;});
+  bindText("cl_telefono", function(){return state.cliente.telefono;}, function(v){state.cliente.telefono=v;});
+  bindText("cl_direccion", function(){return state.cliente.direccion;}, function(v){state.cliente.direccion=v;});
+
+  var notas = $("notas");
+  notas.value = state.notas || "";
+  notas.addEventListener("input", function(){ state.notas=notas.value; autosize(notas); save(); });
+
+  var desc = $("descuento");
+  desc.value = state.descuento || 0;
+  desc.addEventListener("input", function(){ state.descuento = parseFloat(desc.value)||0; recalc(); save(); });
+
+  $("ivachk").checked = !!state.iva;
+  $("ivachk").addEventListener("change", function(){ state.iva=this.checked; recalc(); save(); });
+
+  var seg = $("curseg");
+  seg.querySelectorAll("button").forEach(function(b){
+    b.setAttribute("aria-pressed", b.dataset.cur===state.currency ? "true":"false");
+    b.addEventListener("click", function(){
+      state.currency = b.dataset.cur; save();
+      seg.querySelectorAll("button").forEach(function(x){ x.setAttribute("aria-pressed", x.dataset.cur===state.currency?"true":"false"); });
+      recalc();
+    });
+  });
+
+  $("addrow").addEventListener("click", function(){ state.rows.push({concepto:"", descripcion:"", cantidad:1, precio:0}); renderRows(); save(); });
+  $("catalog").addEventListener("change", function(){
+    var it = CATALOG[this.value]; this.value="";
+    if(!it) return;
+    var precio = state.currency==="MXN" ? it.mxn : it.usd;
+    state.rows.push({concepto:it.concepto, descripcion:it.descripcion, cantidad:it.cantidad||1, precio:precio});
+    renderRows(); save();
+  });
+
+  $("printbtn").addEventListener("click", function(){ window.print(); });
+  $("resetbtn").addEventListener("click", function(){
+    if(!confirm("¿Reiniciar la cotización a la plantilla de ejemplo? Se borra lo que escribiste en este navegador.")) return;
+    try{ localStorage.removeItem(KEY); }catch(e){}
+    state = defaults(); rebind(); renderRows();
+  });
+}
+
+function rebind(){
+  ["folio","fecha","vigencia"].forEach(function(k){ $(k).value = state[k]||""; });
+  $("em_razon").value=state.emisor.razon||""; $("em_rfc").value=state.emisor.rfc||"";
+  $("cl_empresa").value=state.cliente.empresa||""; $("cl_contacto").value=state.cliente.contacto||"";
+  $("cl_correo").value=state.cliente.correo||""; $("cl_telefono").value=state.cliente.telefono||"";
+  $("cl_direccion").value=state.cliente.direccion||"";
+  $("notas").value=state.notas||""; autosize($("notas"));
+  $("descuento").value=state.descuento||0;
+  $("ivachk").checked=!!state.iva;
+  $("curseg").querySelectorAll("button").forEach(function(x){ x.setAttribute("aria-pressed", x.dataset.cur===state.currency?"true":"false"); });
+}
+
+function renderRows(){
+  var tb = $("rows"); tb.innerHTML="";
+  state.rows.forEach(function(row, i){
+    var tr = document.createElement("tr");
+
+    var del = document.createElement("td"); del.className="delcell";
+    del.innerHTML = '<button class="rowdel" title="Quitar" aria-label="Quitar concepto">&times;</button>';
+    del.querySelector("button").addEventListener("click", function(){ state.rows.splice(i,1); renderRows(); save(); });
+    tr.appendChild(del);
+
+    var c = document.createElement("td"); c.className="c-concepto";
+    c.innerHTML = '<input class="f concepto-t" placeholder="Concepto"><textarea class="f" rows="1" placeholder="Descripción"></textarea>';
+    var ci=c.querySelector("input"), cd=c.querySelector("textarea");
+    ci.value=row.concepto||""; cd.value=row.descripcion||"";
+    ci.addEventListener("input", function(){ row.concepto=ci.value; save(); });
+    cd.addEventListener("input", function(){ row.descripcion=cd.value; autosize(cd); save(); });
+    tr.appendChild(c);
+
+    var q = document.createElement("td"); q.className="c-num cell-num";
+    q.innerHTML='<input class="f" type="number" min="0" step="1">';
+    var qi=q.querySelector("input"); qi.value=row.cantidad;
+    qi.addEventListener("input", function(){ row.cantidad=parseFloat(qi.value)||0; imp.textContent=fmt((row.cantidad)*(row.precio)); recalc(); save(); });
+    tr.appendChild(q);
+
+    var p = document.createElement("td"); p.className="c-num cell-num";
+    p.innerHTML='<input class="f" type="number" min="0" step="100">';
+    var pi=p.querySelector("input"); pi.value=row.precio;
+    pi.addEventListener("input", function(){ row.precio=parseFloat(pi.value)||0; imp.textContent=fmt((row.cantidad)*(row.precio)); recalc(); save(); });
+    tr.appendChild(p);
+
+    var impTd=document.createElement("td"); impTd.className="importe";
+    var imp=document.createElement("span"); imp.textContent=fmt((row.cantidad||0)*(row.precio||0));
+    impTd.appendChild(imp);
+    tr.appendChild(impTd);
+
+    tb.appendChild(tr);
+    autosize(cd);
+  });
+  recalc();
+}
+
+function recalc(){
+  var sub=0;
+  state.rows.forEach(function(r){ sub += (parseFloat(r.cantidad)||0)*(parseFloat(r.precio)||0); });
+  var descv = parseFloat(state.descuento)||0;
+  var base = Math.max(0, sub - descv);
+  var iva = state.iva ? base*0.16 : 0;
+  var total = base + iva;
+
+  $("t_sub").textContent = fmt(sub);
+  $("t_iva").textContent = fmt(iva);
+  $("ivarow").hidden = !state.iva;
+  $("t_total").textContent = fmt(total);
+  $("t_cur").textContent = state.currency;
+
+  var cells = $("rows").querySelectorAll(".importe span");
+  state.rows.forEach(function(r,idx){ if(cells[idx]) cells[idx].textContent = fmt((r.cantidad||0)*(r.precio||0)); });
+}
+
+bindAll();
+rebind();
+renderRows();
+</script>
+</body>
+</html>
