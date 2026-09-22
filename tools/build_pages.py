@@ -48,7 +48,7 @@ BLOCKED_DIRS = {"api", "tools", "tests", "assets", "docs", ".git", ".venv",
                 "venv", "__pycache__", ".pytest_cache", "node_modules"}
 BLOCKED_SUFFIX = {".py", ".sh", ".db", ".sqlite3", ".pyc", ".env", ".zip", ".xlsx", ".php"}
 BLOCKED_NAMES = {".env", ".env.example", ".gitignore", ".DS_Store", "_headers",
-                 "README.md", "INSTALAR.md", "PRUEBAS.md", "vercel.json", ".vercelignore",
+                 "README.md", "INSTALAR.md", "PRUEBAS.md", "CLAUDE.md", "vercel.json", ".vercelignore",
                  # documentos internos: no se publican en Pages
                  "GITHUB-PAGES.md", "MIGRACION-NEUBOX.md", "auditoria-logistika.md",
                  "requirements.txt",
