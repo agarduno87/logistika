@@ -37,17 +37,19 @@
     background:var(--blue-soft); border:1px solid #D3E0F5; border-radius:8px;
     padding:9px 13px; margin-bottom:16px; display:flex; gap:8px; align-items:center;}
   .hint b{color:var(--blue-dk)}
-  .sheet{position:relative; overflow:hidden; background:var(--paper); border:1px solid var(--line); border-top:4px solid var(--blue); border-radius:4px 4px 4px 4px;
-    box-shadow:0 1px 0 rgba(24,32,58,.04), 0 24px 60px -30px rgba(24,32,58,.32); padding:clamp(26px,5vw,52px);}
+  .sheet{position:relative; overflow:hidden; background:var(--paper); border:1px solid var(--line); border-radius:6px;
+    box-shadow:0 1px 0 rgba(24,32,58,.04), 0 24px 60px -30px rgba(24,32,58,.32); padding:0;}
+  .sheet-body{padding:clamp(26px,5vw,52px)}
 
-  /* Masthead */
-  .masthead{display:flex; justify-content:space-between; gap:24px; flex-wrap:wrap; align-items:flex-start; padding-bottom:22px; border-bottom:2px solid var(--ink)}
-  .id{display:flex; flex-direction:column; gap:10px}
-  .id img{height:46px; width:auto; display:block}
-  .id .tag{font-family:var(--mono); font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--blue-dk)}
-  .docmeta{text-align:right; min-width:210px}
-  .docmeta .doctitle{font-weight:700; font-size:23px; letter-spacing:.02em; text-transform:uppercase; color:var(--ink)}
-  .metagrid{margin-top:10px; display:grid; grid-template-columns:auto auto; gap:3px 12px; justify-content:end}
+  /* Membrete corporativo (franja azul + logo blanco) */
+  .letterhead{background:var(--blue); color:#fff; padding:22px clamp(26px,5vw,52px); display:flex; align-items:center; justify-content:space-between; gap:18px; flex-wrap:wrap}
+  .lh-brand{display:flex; flex-direction:column; gap:6px}
+  .lh-logo{height:34px; width:auto; display:block}
+  .lh-tag{font-family:var(--mono); font-size:9.5px; letter-spacing:.14em; text-transform:uppercase; color:#C6D4EF}
+  .lh-title{font-weight:700; font-size:22px; letter-spacing:.14em; text-transform:uppercase; color:#fff}
+  /* Meta del documento (bajo la franja) */
+  .docmeta{display:flex; justify-content:flex-end; padding-bottom:16px; margin-bottom:6px; border-bottom:2px solid var(--ink)}
+  .metagrid{display:grid; grid-template-columns:auto auto; gap:3px 12px; justify-content:end}
   .metagrid dt{font-family:var(--mono); font-size:9.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-2); text-align:right; align-self:center}
   .metagrid dd{margin:0; text-align:right}
 
@@ -127,6 +129,8 @@
     .toolbar,.hint,.addbar,.rowdel,.delcell{display:none !important}
     .sheet-wrap{max-width:none; margin:0; padding:0}
     .sheet{border:0; border-radius:0; box-shadow:none; padding:0}
+    .sheet-body{padding:0}
+    .letterhead{padding:14px 0; -webkit-print-color-adjust:exact; print-color-adjust:exact}
     .f:hover,.f:focus{background:transparent; box-shadow:none}
     tbody tr:nth-child(even) td{background:transparent}
     .totrow.grand{-webkit-print-color-adjust:exact; print-color-adjust:exact}
