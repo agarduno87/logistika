@@ -75,7 +75,9 @@ function fmt(n){
   catch(e){ return "$" + n.toFixed(2); }
 }
 
+function parseMoney(v){ v=(v||"").toString().replace(/[^0-9.\-]/g,""); var n=parseFloat(v); return isFinite(n)?n:0; }
 function $(id){ return document.getElementById(id); }
+function formatDescuento(){ var d=$("descuento"); if(d && document.activeElement!==d){ d.value = fmt(state.descuento||0); } }
 
 /* Campos de texto (input/textarea) */
 function bindText(id, get, set){
@@ -132,8 +134,10 @@ function bindAll(){
   bindCE("sig_right", function(){return state.sigRight;}, function(v){state.sigRight=v;});
 
   var desc = $("descuento");
-  desc.value = state.descuento || 0;
-  desc.addEventListener("input", function(){ state.descuento = parseFloat(desc.value)||0; recalc(); save(); });
+  formatDescuento();
+  desc.addEventListener("focus", function(){ desc.value = state.descuento ? String(state.descuento) : ""; });
+  desc.addEventListener("blur", formatDescuento);
+  desc.addEventListener("input", function(){ state.descuento = parseMoney(desc.value); recalc(); save(); });
 
   $("ivachk").checked = !!state.iva;
   $("ivachk").addEventListener("change", function(){ state.iva=this.checked; recalc(); save(); });
@@ -144,7 +148,7 @@ function bindAll(){
     b.addEventListener("click", function(){
       state.currency = b.dataset.cur; save();
       seg.querySelectorAll("button").forEach(function(x){ x.setAttribute("aria-pressed", x.dataset.cur===state.currency?"true":"false"); });
-      recalc();
+      renderRows();
     });
   });
 
@@ -181,7 +185,7 @@ function rebind(){
   $("notas").value = state.notas || ""; autosize($("notas"));
   $("sig_left").textContent = state.sigLeft || "";
   $("sig_right").textContent = state.sigRight || "";
-  $("descuento").value = state.descuento || 0;
+  formatDescuento();
   $("ivachk").checked = !!state.iva;
   $("curseg").querySelectorAll("button").forEach(function(x){ x.setAttribute("aria-pressed", x.dataset.cur===state.currency?"true":"false"); });
   renderCondiciones();
@@ -212,9 +216,13 @@ function renderRows(){
     tr.appendChild(q);
 
     var p = document.createElement("td"); p.className="c-num cell-num";
-    p.innerHTML='<input class="f" type="number" min="0" step="100">';
-    var pi=p.querySelector("input"); pi.value=row.precio;
-    pi.addEventListener("input", function(){ row.precio=parseFloat(pi.value)||0; imp.textContent=fmt((row.cantidad)*(row.precio)); recalc(); save(); });
+    p.innerHTML='<input class="f" type="text" inputmode="decimal">';
+    var pi=p.querySelector("input");
+    function pShow(){ pi.value = fmt(row.precio||0); }
+    pShow();
+    pi.addEventListener("focus", function(){ pi.value = row.precio ? String(row.precio) : ""; });
+    pi.addEventListener("blur", pShow);
+    pi.addEventListener("input", function(){ row.precio=parseMoney(pi.value); imp.textContent=fmt((row.cantidad)*(row.precio)); recalc(); save(); });
     tr.appendChild(p);
 
     var impTd=document.createElement("td"); impTd.className="importe";
@@ -232,6 +240,10 @@ function recalc(){
   var sub=0;
   state.rows.forEach(function(r){ sub += (parseFloat(r.cantidad)||0)*(parseFloat(r.precio)||0); });
   var descv = parseFloat(state.descuento)||0;
+  var pct = sub>0 ? (descv/sub*100) : 0;
+  var pctEl = $("descpct");
+  if(pctEl){ pctEl.textContent = descv>0 ? ("· " + (pct%1===0?pct.toFixed(0):pct.toFixed(1)) + "%") : ""; }
+  formatDescuento();
   var base = Math.max(0, sub - descv);
   var iva = state.iva ? base*0.16 : 0;
   var total = base + iva;
