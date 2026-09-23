@@ -138,3 +138,14 @@
     thead th{-webkit-print-color-adjust:exact; print-color-adjust:exact}
     table{min-width:0}
   }
+
+/* Texto editable en sitio (contenteditable) */
+.ce{cursor:text; border-radius:3px; padding:0 3px; margin:0 -3px}
+.ce:hover{background:var(--line-2)}
+.ce:focus{outline:0; background:#fff; color:var(--ink); box-shadow:0 0 0 1px var(--blue)}
+.lh-tag.ce:hover{background:rgba(255,255,255,.16)}
+.terms .ce-li{cursor:text; border-radius:3px}
+.terms .ce-li:hover{background:var(--line-2)}
+.terms .ce-li:focus{outline:0; background:#fff; box-shadow:0 0 0 1px var(--blue)}
+.footer.footer-center{justify-content:center; text-align:center}
+.footer.footer-center a{color:var(--blue-dk); text-decoration:none}

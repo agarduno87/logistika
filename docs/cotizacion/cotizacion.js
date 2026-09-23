@@ -1,5 +1,5 @@
 "use strict";
-var KEY = "logistika-cotizacion-v1";
+var KEY = "logistika-cotizacion-v2";
 
 var CATALOG = {
   start:        {concepto:"Start — Consultoría y plan de importación/exportación", descripcion:"Análisis de producto, proveedor y origen; impuestos y estimación de costo total en destino; Incoterm, régimen y ruta; expediente de viabilidad que te quedas.", cantidad:1, mxn:0, usd:0, unidad:"proyecto"},
@@ -21,25 +21,50 @@ function defaults(){
   var vig = new Date(hoy.getTime() + 15*86400000);
   var yy = hoy.getFullYear();
   return {
+    tagline:"Logística y Comercio Exterior",
+    doctitle:"Cotización",
     folio:"COT-" + yy + "-001",
     fecha:fmtDate(hoy),
     vigencia:"15 días · vence " + fmtDate(vig),
-    emisor:{razon:"", rfc:""},
-    cliente:{empresa:"Empresa Ejemplo, S.A. de C.V.", contacto:"Nombre del contacto", correo:"contacto@empresa.com", telefono:"+52 442 000 0000", direccion:"Ciudad, Estado"},
+    // Emisor y receptor: MISMA lista, mismo orden.
+    emisor:{nombre:"Logistika", razon:"", rfc:"", direccion:"Santiago de Querétaro, Querétaro, México", correo:"hola@logistika.mx", telefono:"+52 442 608 4290"},
+    cliente:{nombre:"Empresa Ejemplo, S.A. de C.V.", razon:"", rfc:"", direccion:"Ciudad, Estado", correo:"contacto@empresa.com", telefono:"+52 442 000 0000"},
     currency:"MXN", iva:true, descuento:0,
     rows:[
       {concepto:CATALOG.healthcheck.concepto, descripcion:CATALOG.healthcheck.descripcion, cantidad:1, precio:0},
       {concepto:CATALOG.manage.concepto, descripcion:CATALOG.manage.descripcion, cantidad:1, precio:0}
     ],
-    notas:"Cotización sujeta a diagnóstico y a confirmación de alcance. Tiempos de entrega y entregables se detallan en la propuesta. Cualquier trabajo fuera del alcance acordado se cotiza por separado. logistika no es agencia aduanal, forwarder ni transportista."
+    notas:"La propuesta detalla los entregables, los tiempos de entrega y el alcance del servicio. Cualquier trabajo fuera del alcance acordado se cotiza por separado.",
+    condiciones:[
+      "Precios en pesos mexicanos, con IVA desglosado.",
+      "50% de anticipo y 50% contra entrega.",
+      "Alcance, entregables y plazos definidos por escrito antes de iniciar.",
+      "Cualquier trabajo adicional se cotiza por separado y requiere su autorización previa.",
+      "Usted es propietario de todos los entregables, incluidos los reportes, las hojas de ruta y los procesos documentados."
+    ],
+    sigLeft:"Aceptación del cliente · Nombre y firma",
+    sigRight:"Por Logistika · Adriana Culebro Jiménez"
   };
 }
 
 var state = load();
 
 function load(){
-  try{ var raw = localStorage.getItem(KEY); if(raw){ return JSON.parse(raw); } }catch(e){}
-  return defaults();
+  var d = defaults();
+  try{
+    var raw = localStorage.getItem(KEY);
+    if(raw){
+      var s = JSON.parse(raw);
+      // Merge defensivo: si el estado guardado no trae algún campo nuevo, cae al default.
+      return Object.assign({}, d, s, {
+        emisor: Object.assign({}, d.emisor, s.emisor || {}),
+        cliente: Object.assign({}, d.cliente, s.cliente || {}),
+        condiciones: (s.condiciones && s.condiciones.length) ? s.condiciones : d.condiciones,
+        rows: s.rows || d.rows
+      });
+    }
+  }catch(e){}
+  return d;
 }
 function save(){ try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){} }
 
@@ -52,28 +77,59 @@ function fmt(n){
 
 function $(id){ return document.getElementById(id); }
 
+/* Campos de texto (input/textarea) */
 function bindText(id, get, set){
   var el = $(id); if(!el) return;
   el.value = get() || "";
   el.addEventListener("input", function(){ set(el.value); save(); });
 }
+/* Texto editable en sitio (contenteditable) */
+function bindCE(id, get, set){
+  var el = $(id); if(!el) return;
+  el.setAttribute("contenteditable", "true");
+  el.textContent = get() || "";
+  el.addEventListener("input", function(){ set(el.textContent); save(); });
+}
 function autosize(t){ t.style.height="auto"; t.style.height=(t.scrollHeight)+"px"; }
 
+/* Emisor / receptor: misma estructura de campos */
+var PARTY_FIELDS = ["nombre","razon","rfc","direccion","correo","telefono"];
+function bindParty(prefix, obj){
+  PARTY_FIELDS.forEach(function(f){
+    bindText(prefix + "_" + f, function(){ return obj[f]; }, function(v){ obj[f]=v; });
+  });
+}
+
+/* Condiciones editables */
+function renderCondiciones(){
+  var ul = $("condiciones"); if(!ul) return;
+  ul.innerHTML = "";
+  (state.condiciones || []).forEach(function(txt, i){
+    var li = document.createElement("li");
+    li.className = "ce-li";
+    li.setAttribute("contenteditable", "true");
+    li.textContent = txt;
+    li.addEventListener("input", function(){ state.condiciones[i] = li.textContent; save(); });
+    ul.appendChild(li);
+  });
+}
+
 function bindAll(){
+  bindCE("tagline", function(){return state.tagline;}, function(v){state.tagline=v;});
+  bindCE("doctitle", function(){return state.doctitle;}, function(v){state.doctitle=v;});
   bindText("folio", function(){return state.folio;}, function(v){state.folio=v;});
   bindText("fecha", function(){return state.fecha;}, function(v){state.fecha=v;});
   bindText("vigencia", function(){return state.vigencia;}, function(v){state.vigencia=v;});
-  bindText("em_razon", function(){return state.emisor.razon;}, function(v){state.emisor.razon=v;});
-  bindText("em_rfc", function(){return state.emisor.rfc;}, function(v){state.emisor.rfc=v;});
-  bindText("cl_empresa", function(){return state.cliente.empresa;}, function(v){state.cliente.empresa=v;});
-  bindText("cl_contacto", function(){return state.cliente.contacto;}, function(v){state.cliente.contacto=v;});
-  bindText("cl_correo", function(){return state.cliente.correo;}, function(v){state.cliente.correo=v;});
-  bindText("cl_telefono", function(){return state.cliente.telefono;}, function(v){state.cliente.telefono=v;});
-  bindText("cl_direccion", function(){return state.cliente.direccion;}, function(v){state.cliente.direccion=v;});
+
+  bindParty("em", state.emisor);
+  bindParty("cl", state.cliente);
 
   var notas = $("notas");
   notas.value = state.notas || "";
   notas.addEventListener("input", function(){ state.notas=notas.value; autosize(notas); save(); });
+
+  bindCE("sig_left", function(){return state.sigLeft;}, function(v){state.sigLeft=v;});
+  bindCE("sig_right", function(){return state.sigRight;}, function(v){state.sigRight=v;});
 
   var desc = $("descuento");
   desc.value = state.descuento || 0;
@@ -102,23 +158,33 @@ function bindAll(){
   });
 
   $("printbtn").addEventListener("click", function(){ window.print(); });
+  // Reset SELECTIVO: solo montos, conceptos y datos del cliente. Tu info y el resto
+  // de la cotización (emisor, folios, notas, condiciones, firmas) se conservan.
   $("resetbtn").addEventListener("click", function(){
-    if(!confirm("¿Reiniciar la cotización a la plantilla de ejemplo? Se borra lo que escribiste en este navegador.")) return;
-    try{ localStorage.removeItem(KEY); }catch(e){}
-    state = defaults(); rebind(); renderRows();
+    if(!confirm("¿Reiniciar montos, conceptos y datos del cliente? Tu información y el resto de la cotización se conservan.")) return;
+    var d = defaults();
+    state.rows = d.rows;
+    state.descuento = 0;
+    state.cliente = d.cliente;
+    save(); rebind(); renderRows();
   });
 }
 
 function rebind(){
+  $("tagline").textContent = state.tagline || "";
+  $("doctitle").textContent = state.doctitle || "";
   ["folio","fecha","vigencia"].forEach(function(k){ $(k).value = state[k]||""; });
-  $("em_razon").value=state.emisor.razon||""; $("em_rfc").value=state.emisor.rfc||"";
-  $("cl_empresa").value=state.cliente.empresa||""; $("cl_contacto").value=state.cliente.contacto||"";
-  $("cl_correo").value=state.cliente.correo||""; $("cl_telefono").value=state.cliente.telefono||"";
-  $("cl_direccion").value=state.cliente.direccion||"";
-  $("notas").value=state.notas||""; autosize($("notas"));
-  $("descuento").value=state.descuento||0;
-  $("ivachk").checked=!!state.iva;
+  PARTY_FIELDS.forEach(function(f){
+    $("em_"+f).value = state.emisor[f] || "";
+    $("cl_"+f).value = state.cliente[f] || "";
+  });
+  $("notas").value = state.notas || ""; autosize($("notas"));
+  $("sig_left").textContent = state.sigLeft || "";
+  $("sig_right").textContent = state.sigRight || "";
+  $("descuento").value = state.descuento || 0;
+  $("ivachk").checked = !!state.iva;
   $("curseg").querySelectorAll("button").forEach(function(x){ x.setAttribute("aria-pressed", x.dataset.cur===state.currency?"true":"false"); });
+  renderCondiciones();
 }
 
 function renderRows(){
