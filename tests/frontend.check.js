@@ -60,7 +60,7 @@ function load(file, page) {
   sel.dispatchEvent(new window.Event("change"));
   check("html lang cambia a es", d.documentElement.lang === "es", d.documentElement.lang);
   const h1 = d.querySelector("h1").textContent;
-  check("h1 traducido", /Sigue tu carga/.test(h1), h1.slice(0, 40));
+  check("h1 traducido", /La logística es nuestra pasión/.test(h1), h1.slice(0, 40));
   check("etapa traducida", /Etapa 01/.test(d.querySelector(".stagenum").textContent));
   check("placeholder traducido", /Tu empresa/.test(d.querySelector('[name="company"]').placeholder));
   const untranslated = [...d.querySelectorAll("[data-i18n]")]

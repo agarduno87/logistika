@@ -280,7 +280,9 @@ def test_customs_broker_boundary_is_stated():
     agencia aduanal y no puede dar a entender que despacha."""
     home = client.get("/").text.lower()
     terms = client.get("/legal/terms/").text.lower()
-    assert "not a customs broker" in home
+    # La frontera vive en el FAQ del home (el copy de la ficha cambió en sep 2026,
+    # pero la declaración legal se mantiene aquí, que es lo que importa).
+    assert "customs clearance is legally reserved" in home
     assert "customs broker" in terms
 
 
