@@ -1,5 +1,5 @@
 "use strict";
-var KEY = "logistika-cotizacion-v2";
+var KEY = "logistika-cotizacion-v3";
 
 var CATALOG = {
   start:        {concepto:"Start — Consultoría y plan de importación/exportación", descripcion:"Análisis de producto, proveedor y origen; impuestos y estimación de costo total en destino; Incoterm, régimen y ruta; expediente de viabilidad que te quedas.", cantidad:1, mxn:0, usd:0, unidad:"proyecto"},
@@ -39,7 +39,6 @@ function defaults(){
       "Precios en pesos mexicanos, con IVA desglosado.",
       "50% de anticipo y 50% contra entrega.",
       "Alcance, entregables y plazos definidos por escrito antes de iniciar.",
-      "Cualquier trabajo adicional se cotiza por separado y requiere su autorización previa.",
       "Usted es propietario de todos los entregables, incluidos los reportes, las hojas de ruta y los procesos documentados."
     ],
     sigLeft:"Aceptación del cliente · Nombre y firma",
